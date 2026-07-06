@@ -1,0 +1,18 @@
+{
+  "name": "el-molino-chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot automático de WhatsApp para Cafetería El Molino",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "dotenv": "^16.4.5",
+    "pino": "^9.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
