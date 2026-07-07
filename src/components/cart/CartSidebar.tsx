@@ -16,12 +16,17 @@ export function CartSidebar() {
   const [time, setTime] = useState("30"); // tiempo en minutos por defecto o hora
   const [customTime, setCustomTime] = useState("");
   const [notes, setNotes] = useState("");
+  
+  // Estado de carga y éxito
+  const [isSending, setIsSending] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else {
       document.body.style.overflow = "";
       setShowCheckout(false); // Reiniciar checkout al cerrar
+      setOrderSuccess(false);
     }
     return () => {
       document.body.style.overflow = "";
@@ -33,18 +38,20 @@ export function CartSidebar() {
     if (showCheckout) document.body.style.overflow = "hidden";
   }, [showCheckout]);
 
-  const canSend = items.length > 0 && name.trim().length > 1;
+  const canSend = items.length > 0 && name.trim().length > 1 && !isSending;
 
-  const send = () => {
+  const send = async () => {
     if (!canSend) return;
     
+    setIsSending(true);
+
     // Calcular hora o minutos seleccionados
     let timeLabel = "";
     if (prepMode === "antes") {
       timeLabel = customTime.trim() ? customTime.trim() : `Dentro de ${time} min`;
     }
 
-    const url = buildWhatsappMessage({ 
+    const fallbackUrl = buildWhatsappMessage({ 
       name: name.trim(), 
       phone: phone.trim() || undefined,
       mode, 
@@ -54,13 +61,39 @@ export function CartSidebar() {
       total, 
       notes: notes.trim() 
     });
-    
-    window.open(url, "_blank", "noopener,noreferrer");
-    
-    // Limpieza post-envío
-    clear();
-    setShowCheckout(false);
-    setOpen(false);
+
+    try {
+      const res = await fetch("https://el-molino-bot.fly.dev/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          mode,
+          prepMode,
+          time: timeLabel,
+          items: items.map(it => ({ name: it.name, qty: it.qty, price: it.price })),
+          total,
+          notes: notes.trim()
+        })
+      });
+
+      if (res.ok) {
+        setOrderSuccess(true);
+        clear();
+      } else {
+        throw new Error("El bot falló al procesar");
+      }
+    } catch (err) {
+      console.warn("Error enviando directo, abriendo WhatsApp:", err);
+      // Fallback
+      window.open(fallbackUrl, "_blank", "noopener,noreferrer");
+      clear();
+      setShowCheckout(false);
+      setOpen(false);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -195,9 +228,32 @@ export function CartSidebar() {
 
           {/* Caja del Modal */}
           <div className="relative w-full h-full sm:h-fit sm:max-h-[90vh] sm:max-w-2xl bg-carbon-2 border-0 sm:border border-border/60 rounded-none sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-in">
-            
-            {/* Header del Modal */}
-            <header className="flex items-center justify-between border-b border-border/50 px-6 py-5 shrink-0 bg-carbon">
+            {orderSuccess ? (
+              <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center my-auto space-y-6">
+                <div className="w-20 h-20 bg-gold/10 text-gold rounded-full flex items-center justify-center animate-bounce">
+                  <Sparkles size={40} />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl sm:text-3xl text-cream">¡Comanda Recibida!</h3>
+                  <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+                    Hemos registrado tu pedido en Cafetería El Molino. En unos instantes recibirás un mensaje de confirmación en tu WhatsApp.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    setOrderSuccess(false);
+                    setShowCheckout(false);
+                    setOpen(false);
+                  }}
+                  className="btn-gold px-8 py-3 rounded-lg text-sm flex items-center gap-2"
+                >
+                  Entendido <Check size={16} />
+                </button>
+              </div>
+            ) : (
+              <>
+                {/* Header del Modal */}
+                <header className="flex items-center justify-between border-b border-border/50 px-6 py-5 shrink-0 bg-carbon">
               <div className="flex items-center gap-2.5">
                 <Sparkles className="text-gold" size={20} />
                 <div>
@@ -362,13 +418,24 @@ export function CartSidebar() {
               <button
                 onClick={send}
                 disabled={!canSend}
-                className="btn-whatsapp w-full sm:w-auto justify-center gap-2 px-8 py-3.5 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                className="btn-gold w-full sm:w-auto justify-center gap-2 px-8 py-3.5 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                <MessageCircle size={18} /> Confirmar y enviar por WhatsApp
+                {isSending ? (
+                  <span className="flex items-center gap-2">
+                    <span className="w-4 h-4 border-2 border-carbon border-t-transparent rounded-full animate-spin"></span>
+                    Enviando...
+                  </span>
+                ) : (
+                  <>
+                    <MessageCircle size={18} /> Confirmar Comanda
+                  </>
+                )}
               </button>
             </footer>
-          </div>
-        </div>
+          </>
+        )}
+      </div>
+    </div>
       )}
     </>
   );
