@@ -14,7 +14,7 @@ function startHealthServer() {
     res.end('El Molino Bot activo ✅');
   });
 
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {
     console.log(`🏥 Health check disponible en el puerto ${PORT}`);
   });
 }

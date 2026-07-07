@@ -22,6 +22,7 @@ const pino = require('pino');
 const { parseOrderMessage } = require('./parser');
 const { saveOrderToSheets } = require('./sheets');
 const { confirmationMessage, reminderMessage } = require('./messages');
+const qrcode = require('qrcode-terminal');
 
 // ─── Constante de detección de comanda ──────────────────────────────────────
 const ORDER_TRIGGER = 'NUEVA COMANDA DIGITAL · EL MOLINO';
@@ -36,7 +37,6 @@ async function startBot() {
   const sock = makeWASocket({
     version,
     auth: state,
-    printQRInTerminal: true,   // Muestra el QR en la terminal al primer inicio
     logger,
     browser: ['El Molino Bot', 'Chrome', '3.0'],
   });
@@ -45,7 +45,11 @@ async function startBot() {
   sock.ev.on('creds.update', saveCreds);
 
   // ── Estado de la conexión ──
-  sock.ev.on('connection.update', ({ connection, lastDisconnect }) => {
+  sock.ev.on('connection.update', ({ connection, lastDisconnect, qr }) => {
+    if (qr) {
+      console.log('📱 Escanea este código QR con WhatsApp para vincular el bot:\n');
+      qrcode.generate(qr, { small: true });
+    }
     if (connection === 'close') {
       const code = lastDisconnect?.error?.output?.statusCode;
       const shouldReconnect = code !== DisconnectReason.loggedOut;
