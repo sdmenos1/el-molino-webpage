@@ -46,7 +46,7 @@ export function CartSidebar() {
     if (showCheckout) document.body.style.overflow = "hidden";
   }, [showCheckout]);
 
-  const canSend = items.length > 0 && name.trim().length > 1 && !isSending;
+  const canSend = items.length > 0 && name.trim().length > 1 && phone.trim().length > 8 && !isSending;
 
   const send = async () => {
     if (!canSend) return;
@@ -302,12 +302,13 @@ export function CartSidebar() {
                     className="mt-1.5 w-full rounded-lg border border-border bg-carbon px-3 py-2.5 text-sm outline-none focus:border-gold transition-colors"
                   />
                 </label>
-                <label className="block">
-                  <span className="text-[0.62rem] tracking-[0.25em] uppercase text-muted-foreground">Teléfono móvil (Opcional)</span>
+                 <label className="block">
+                  <span className="text-[0.62rem] tracking-[0.25em] uppercase text-muted-foreground">Teléfono móvil *</span>
                   <input
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     type="tel"
+                    required
                     placeholder="Ej. 600 000 000"
                     className="mt-1.5 w-full rounded-lg border border-border bg-carbon px-3 py-2.5 text-sm outline-none focus:border-gold transition-colors"
                   />
