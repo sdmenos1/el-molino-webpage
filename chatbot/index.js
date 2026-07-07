@@ -10,6 +10,7 @@
 
 require('dotenv').config();
 
+const { startHealthServer } = require('./health');
 const {
   default: makeWASocket,
   useMultiFileAuthState,
@@ -118,6 +119,10 @@ async function startBot() {
 
 // ─── Inicio ──────────────────────────────────────────────────────────────────
 console.log('🌟 Iniciando El Molino Bot...');
+
+// Servidor HTTP para que Fly.io sepa que el proceso está vivo
+startHealthServer();
+
 startBot().catch(err => {
   console.error('Error fatal al iniciar el bot:', err);
   process.exit(1);
