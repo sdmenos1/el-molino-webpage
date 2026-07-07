@@ -13,8 +13,16 @@ export function CartSidebar() {
   const [phone, setPhone] = useState("");
   const [mode, setMode] = useState<"recoger" | "reservar">("reservar");
   const [prepMode, setPrepMode] = useState<"al-llegar" | "antes">("al-llegar");
-  const [time, setTime] = useState("30"); // tiempo en minutos por defecto o hora
-  const [customTime, setCustomTime] = useState("");
+  // Pre-llenar con hora actual + 30 min
+  const getInitialTime = () => {
+    const d = new Date();
+    d.setMinutes(d.getMinutes() + 30);
+    const hours = String(d.getHours()).padStart(2, "0");
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
+  const [arrivalTime, setArrivalTime] = useState(getInitialTime());
   const [notes, setNotes] = useState("");
   
   // Estado de carga y éxito
@@ -45,10 +53,10 @@ export function CartSidebar() {
     
     setIsSending(true);
 
-    // Calcular hora o minutos seleccionados
+    // Calcular hora seleccionada
     let timeLabel = "";
     if (prepMode === "antes") {
-      timeLabel = customTime.trim() ? customTime.trim() : `Dentro de ${time} min`;
+      timeLabel = arrivalTime;
     }
 
     const fallbackUrl = buildWhatsappMessage({ 
@@ -350,43 +358,23 @@ export function CartSidebar() {
                   </button>
                 </div>
 
-                {/* Selectores de tiempo si selecciona preparar antes */}
+                {/* Selector de hora si selecciona preparar antes */}
                 {prepMode === "antes" && (
                   <div className="mt-4 p-4 rounded-xl border border-border bg-carbon/60 space-y-3 animate-fade-in">
-                    <span className="text-[0.62rem] tracking-[0.25em] uppercase text-gold">¿Cuándo vas a llegar al local?</span>
+                    <span className="text-[0.62rem] tracking-[0.25em] uppercase text-gold">¿A qué hora vas a llegar al local?</span>
                     
-                    <div className="grid grid-cols-4 gap-2">
-                      {["15", "30", "45", "60"].map((min) => (
-                        <button
-                          key={min}
-                          type="button"
-                          onClick={() => {
-                            setTime(min);
-                            setCustomTime("");
-                          }}
-                          className={`py-2 rounded-lg text-xs font-semibold border transition-all ${
-                            time === min && !customTime
-                              ? "bg-gold text-carbon border-gold"
-                              : "border-border bg-carbon-2 text-muted-foreground hover:border-gold-soft"
-                          }`}
-                        >
-                          {min} min
-                        </button>
-                      ))}
+                    <div className="relative">
+                      <input
+                        value={arrivalTime}
+                        onChange={(e) => setArrivalTime(e.target.value)}
+                        type="time"
+                        required
+                        className="w-full rounded-lg border border-border bg-carbon-2 px-4 py-3 text-sm outline-none focus:border-gold text-cream font-serif text-center text-lg focus:ring-1 focus:ring-gold"
+                      />
                     </div>
-
-                    <div className="pt-2 border-t border-border/30">
-                      <label className="block">
-                        <span className="text-[0.62rem] text-muted-foreground">O indica una hora específica de recogida/reserva:</span>
-                        <input
-                          value={customTime}
-                          onChange={(e) => setCustomTime(e.target.value)}
-                          type="text"
-                          placeholder="Ej: A las 14:45h o Hoy 21:15"
-                          className="mt-1 w-full rounded-lg border border-border bg-carbon-2 px-3 py-2 text-xs outline-none focus:border-gold text-cream"
-                        />
-                      </label>
-                    </div>
+                    <p className="text-[0.68rem] text-muted-foreground text-center">
+                      El local preparará tu comanda para la hora seleccionada.
+                    </p>
                   </div>
                 )}
               </div>

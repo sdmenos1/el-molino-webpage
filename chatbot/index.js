@@ -21,8 +21,105 @@ const pino = require('pino');
 
 const { parseOrderMessage } = require('./parser');
 const { saveOrderToSheets } = require('./sheets');
-const { confirmationMessage, reminderMessage } = require('./messages');
+const { confirmationMessage, reminderMessage, restaurantNotificationMessage } = require('./messages');
 const qrcode = require('qrcode-terminal');
+
+let activeSock = null;
+
+function formatJid(phone) {
+  let clean = phone.replace(/\D/g, '');
+  if (clean.length === 9 && (clean.startsWith('6') || clean.startsWith('7'))) {
+    clean = '34' + clean;
+  }
+  if (!clean.endsWith('@s.whatsapp.net')) {
+    clean = clean + '@s.whatsapp.net';
+  }
+  return clean;
+}
+
+async function handleWebOrder(orderData) {
+  if (!activeSock) {
+    throw new Error('El bot de WhatsApp no está conectado todavía');
+  }
+
+  let minutes = 0;
+  if (orderData.prepMode === 'antes' && orderData.time) {
+    const timeMatch = orderData.time.match(/^(\d{1,2}):(\d{2})$/);
+    if (timeMatch) {
+      const targetHours = parseInt(timeMatch[1], 10);
+      const targetMinutes = parseInt(timeMatch[2], 10);
+
+      const now = new Date();
+      const targetDate = new Date();
+      targetDate.setHours(targetHours, targetMinutes, 0, 0);
+
+      if (targetDate < now) {
+        // Si la hora es anterior a la actual (ej. al pasar la medianoche), asumimos que es para mañana
+        targetDate.setDate(targetDate.getDate() + 1);
+      }
+
+      const diffMs = targetDate - now;
+      minutes = Math.max(0, Math.floor(diffMs / 60000));
+    } else {
+      minutes = parseInt((orderData.time || '').match(/\d+/)?.[0] || '30', 10);
+    }
+  }
+
+  const order = {
+    name: orderData.name,
+    phone: orderData.phone,
+    prepMode: orderData.prepMode,
+    timeLabel: orderData.time || '',
+    minutesUntilArrival: minutes,
+    items: orderData.items || [],
+    total: orderData.total || 0,
+    notes: orderData.notes || '',
+    date: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+    hour: new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }),
+  };
+
+  // 1. WhatsApp del cliente
+  const clientJid = formatJid(order.phone);
+
+  // 2. WhatsApp del local (Si hay env var RESTAURANT_NUMBER, se usa. Si no, se manda a sí mismo)
+  let restaurantJid = process.env.RESTAURANT_NUMBER
+    ? formatJid(process.env.RESTAURANT_NUMBER)
+    : activeSock.user.id.split(':')[0] + '@s.whatsapp.net';
+
+  console.log(`\n🕸️ Pedido web recibido de ${order.name} (${order.phone})`);
+
+  // 3. Guardar en Google Sheets (en paralelo, sin bloquear)
+  saveOrderToSheets(order).catch(err =>
+    console.error('   Sheets error (no crítico):', err.message)
+  );
+
+  // 4. Enviar comanda al local
+  const restaurantMsg = restaurantNotificationMessage(order);
+  await activeSock.sendMessage(restaurantJid, { text: restaurantMsg });
+  console.log(`   📨 Comanda enviada al local (${restaurantJid})`);
+
+  // 5. Enviar confirmación al cliente
+  const confirmMsg = confirmationMessage(order);
+  await activeSock.sendMessage(clientJid, { text: confirmMsg });
+  console.log(`   ✅ Confirmación enviada al cliente (${clientJid})`);
+
+  // 6. Programar recordatorio
+  if (order.prepMode === 'antes' && order.minutesUntilArrival > 6) {
+    const delayMs = (order.minutesUntilArrival - 5) * 60 * 1000;
+    console.log(`   ⏰ Recordatorio programado en ${(delayMs / 60000).toFixed(1)} min`);
+
+    setTimeout(async () => {
+      try {
+        await activeSock.sendMessage(clientJid, { text: reminderMessage(order) });
+        console.log(`\n🔔 Recordatorio enviado a ${order.name}`);
+      } catch (e) {
+        console.error('Error enviando recordatorio:', e.message);
+      }
+    }, delayMs);
+  }
+
+  return { clientJid, restaurantJid };
+}
 
 // ─── Constante de detección de comanda ──────────────────────────────────────
 const ORDER_TRIGGER = 'NUEVA COMANDA DIGITAL · EL MOLINO';
@@ -40,6 +137,8 @@ async function startBot() {
     logger,
     browser: ['El Molino Bot', 'Chrome', '3.0'],
   });
+
+  activeSock = sock;
 
   // Guardar credenciales cada vez que se actualicen
   sock.ev.on('creds.update', saveCreds);
@@ -124,8 +223,8 @@ async function startBot() {
 // ─── Inicio ──────────────────────────────────────────────────────────────────
 console.log('🌟 Iniciando El Molino Bot...');
 
-// Servidor HTTP para que Fly.io sepa que el proceso está vivo
-startHealthServer();
+// Servidor HTTP para que Fly.io sepa que el proceso está vivo y recibir pedidos
+startHealthServer(handleWebOrder);
 
 startBot().catch(err => {
   console.error('Error fatal al iniciar el bot:', err);

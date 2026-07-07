@@ -38,7 +38,23 @@ function parseOrderMessage(body, senderJid) {
         if (match) {
           order.timeLabel = match[1];
           const minMatch = order.timeLabel.match(/(\d+)\s*min/i);
-          if (minMatch) order.minutesUntilArrival = parseInt(minMatch[1]);
+          if (minMatch) {
+            order.minutesUntilArrival = parseInt(minMatch[1], 10);
+          } else {
+            const timeMatch = order.timeLabel.match(/^(\d{1,2}):(\d{2})$/);
+            if (timeMatch) {
+              const targetHours = parseInt(timeMatch[1], 10);
+              const targetMinutes = parseInt(timeMatch[2], 10);
+              const now = new Date();
+              const targetDate = new Date();
+              targetDate.setHours(targetHours, targetMinutes, 0, 0);
+              if (targetDate < now) {
+                targetDate.setDate(targetDate.getDate() + 1);
+              }
+              const diffMs = targetDate - now;
+              order.minutesUntilArrival = Math.max(0, Math.floor(diffMs / 60000));
+            }
+          }
         }
       }
 
