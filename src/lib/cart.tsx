@@ -75,7 +75,7 @@ export function useCart() {
   return ctx;
 }
 
-export const WHATSAPP_NUMBER = "34611729769";
+export const WHATSAPP_NUMBER = "34680803900";
 
 export function buildWhatsappMessage(opts: {
   name: string;
