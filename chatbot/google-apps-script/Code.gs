@@ -1,28 +1,32 @@
 // ============================================================
 // Code.gs — Google Apps Script para Cafetería El Molino
-// Guarda los pedidos recibidos por el bot en una Google Sheet.
-//
-// INSTRUCCIONES DE CONFIGURACIÓN:
-// 1. Ve a script.google.com
-// 2. Crea un nuevo proyecto y pega este código
-// 3. En el menú: Implementar > Nueva implementación
-// 4. Tipo: Aplicación web
-// 5. Ejecutar como: Yo
-// 6. Quién tiene acceso: Cualquiera
-// 7. Implementar → Copia la URL que aparece
-// 8. Pega esa URL en el archivo .env del chatbot como APPS_SCRIPT_URL
+// Guarda los pedidos, los sirve en JSON y permite actualizar su estado.
 // ============================================================
 
 const SHEET_NAME = 'Pedidos El Molino';
 
-// Recibe los datos del pedido vía POST desde el bot
+// Recibe los datos del pedido o acciones de actualización desde la web
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-
-    // Crear la hoja si no existe
     let sheet = ss.getSheetByName(SHEET_NAME);
+
+    // 1. Manejar acción de actualización de estado desde el Dashboard
+    if (data.action === 'updateStatus') {
+      const rowNum = parseInt(data.row, 10);
+      if (sheet && rowNum > 1 && rowNum <= sheet.getLastRow()) {
+        sheet.getRange(rowNum, 9).setValue(data.status); // Columna 9 es 'Estado'
+        return ContentService
+          .createTextOutput(JSON.stringify({ ok: true }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: false, error: 'Fila inválida o no encontrada' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // 2. Crear la hoja si no existe (flujo de creación normal)
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
       const headers = ['Fecha', 'Hora', 'Cliente', 'Teléfono', 'Preparación', 'Platos', 'Total (€)', 'Observaciones', 'Estado'];
@@ -48,7 +52,7 @@ function doPost(e) {
     }
 
     // Añadir fila con los datos del pedido
-    const row = sheet.appendRow([
+    sheet.appendRow([
       data.date,
       data.hour,
       data.name,
@@ -57,7 +61,7 @@ function doPost(e) {
       data.items,
       data.total,
       data.notes,
-      data.status,
+      data.status || 'Confirmado ✅',
     ]);
 
     // Alternar color de filas para facilitar lectura
@@ -77,9 +81,64 @@ function doPost(e) {
   }
 }
 
-// Respuesta de prueba cuando se accede via GET (para verificar que funciona)
+// Devuelve la lista completa de pedidos en formato JSON
 function doGet(e) {
-  return ContentService
-    .createTextOutput('✅ El Molino Bot — Google Apps Script funcionando correctamente')
-    .setMimeType(ContentService.MimeType.TEXT);
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      return ContentService
+        .createTextOutput(JSON.stringify([]))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const rows = sheet.getDataRange().getDisplayValues();
+    if (rows.length <= 1) {
+      return ContentService
+        .createTextOutput(JSON.stringify([]))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const headers = rows[0];
+    const orders = [];
+
+    // Recorrer filas (saltando la cabecera)
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+      const order = { id: i }; // usar número de fila como ID temporal
+      for (let j = 0; j < headers.length; j++) {
+        const key = getHeaderKey(headers[j]);
+        order[key] = row[j];
+      }
+      orders.push(order);
+    }
+
+    // Devolver en orden inverso (los más recientes primero)
+    orders.reverse();
+
+    return ContentService
+      .createTextOutput(JSON.stringify(orders))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ error: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Mapear nombres de columnas de Sheets a claves JSON para el frontend
+function getHeaderKey(header) {
+  switch (header) {
+    case 'Fecha': return 'date';
+    case 'Hora': return 'hour';
+    case 'Cliente': return 'name';
+    case 'Teléfono': return 'phone';
+    case 'Preparación': return 'prepMode';
+    case 'Platos': return 'items';
+    case 'Total (€)': return 'total';
+    case 'Observaciones': return 'notes';
+    case 'Estado': return 'status';
+    default: return header.toLowerCase();
+  }
 }

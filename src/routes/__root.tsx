@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useLocation,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -121,17 +122,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith("/dashboard");
 
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
-        <Header />
+        {!isDashboard && <Header />}
         <main className="min-h-screen">
           <Outlet />
         </main>
-        <Footer />
-        <CartFab />
-        <CartSidebar />
+        {!isDashboard && <Footer />}
+        {!isDashboard && <CartFab />}
+        {!isDashboard && <CartSidebar />}
       </CartProvider>
     </QueryClientProvider>
   );

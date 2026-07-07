@@ -22,7 +22,10 @@ async function saveOrderToSheets(order) {
       prepMode: order.prepMode === 'antes'
         ? `Con antelación (${order.timeLabel})`
         : 'Al llegar',
-      items: order.items.join(' | '),
+      items: order.items.map(it => {
+        if (typeof it === 'string') return it;
+        return `${it.qty}x ${it.name}`;
+      }).join(' | '),
       total: order.total,
       notes: order.notes || '—',
       status: 'Confirmado ✅',
