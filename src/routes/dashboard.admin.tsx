@@ -39,12 +39,14 @@ function DashboardAdminComponent() {
   const [countdown, setCountdown] = useState(15);
   const [updatingId, setUpdatingId] = useState<number | null>(null);
 
+  const DEFAULT_URL = "https://script.google.com/macros/s/AKfycbwZdhWD09PzWd2vVwMLxsRTl8KEyVMy6Na_2NvIN83Wd0-PtXrGtiHvpiyB1uBRu94I/exec";
+
   // Cargar URL guardada
   useEffect(() => {
-    const savedUrl = localStorage.getItem("el_molino_apps_script_url") || "";
+    const savedUrl = localStorage.getItem("el_molino_apps_script_url") || DEFAULT_URL;
     setScriptUrl(savedUrl);
     setTempUrl(savedUrl);
-    if (!savedUrl) {
+    if (!localStorage.getItem("el_molino_apps_script_url") && !DEFAULT_URL) {
       setShowSettings(true);
     }
   }, []);
