@@ -15,6 +15,7 @@ import { Route as DesayunosRouteImport } from './routes/desayunos'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as CartaRouteImport } from './routes/carta'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardAdminRoute = DashboardAdminRouteImport.update({
+  id: '/dashboard/admin',
+  path: '/dashboard/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/desayunos': typeof DesayunosRoute
   '/menu': typeof MenuRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/desayunos': typeof DesayunosRoute
   '/menu': typeof MenuRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +79,27 @@ export interface FileRoutesById {
   '/desayunos': typeof DesayunosRoute
   '/menu': typeof MenuRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/carta' | '/contacto' | '/desayunos' | '/menu' | '/sitemap.xml'
+    | '/'
+    | '/carta'
+    | '/contacto'
+    | '/desayunos'
+    | '/menu'
+    | '/sitemap.xml'
+    | '/dashboard/admin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/carta' | '/contacto' | '/desayunos' | '/menu' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/carta'
+    | '/contacto'
+    | '/desayunos'
+    | '/menu'
+    | '/sitemap.xml'
+    | '/dashboard/admin'
   id:
     | '__root__'
     | '/'
@@ -86,6 +108,7 @@ export interface FileRouteTypes {
     | '/desayunos'
     | '/menu'
     | '/sitemap.xml'
+    | '/dashboard/admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +118,7 @@ export interface RootRouteChildren {
   DesayunosRoute: typeof DesayunosRoute
   MenuRoute: typeof MenuRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  DashboardAdminRoute: typeof DashboardAdminRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/admin': {
+      id: '/dashboard/admin'
+      path: '/dashboard/admin'
+      fullPath: '/dashboard/admin'
+      preLoaderRoute: typeof DashboardAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   DesayunosRoute: DesayunosRoute,
   MenuRoute: MenuRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  DashboardAdminRoute: DashboardAdminRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
