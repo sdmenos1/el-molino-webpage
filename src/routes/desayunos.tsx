@@ -255,24 +255,24 @@ function Desayunos() {
         </div>
       </section>
 
-      {/* SECCIÓN INTERMEDIA: MARQUEE INFINITO FLUIDO 100% VISIBLE */}
-      <section id="flyers" className="py-8 my-8 bg-carbon-2/60 border-y border-border/40 overflow-hidden relative">
-        <div className="animate-marquee-horizontal gap-6 px-3">
+      {/* SECCIÓN INTERMEDIA: MARQUEE INFINITO FLUIDO COMPACTO */}
+      <section id="flyers" className="py-4 my-4 bg-carbon-2/60 border-y border-border/40 overflow-hidden relative">
+        <div className="animate-marquee-horizontal gap-5 px-3">
           {[...flyers, ...flyers].map((fl, idx) => (
             <div
               key={idx}
               onClick={() => setSelectedFlyer(fl.img)}
-              className="relative w-64 sm:w-72 md:w-80 shrink-0 rounded-2xl overflow-hidden border border-white/15 bg-carbon cursor-pointer shadow-2xl transition-all duration-300 hover:border-gold/60 hover:scale-105 group"
+              className="relative w-40 sm:w-48 md:w-52 shrink-0 rounded-xl overflow-hidden border border-white/15 bg-carbon cursor-pointer shadow-lg transition-transform duration-300 hover:scale-105 group"
             >
               <img
                 src={fl.img}
                 alt={fl.title}
                 loading="lazy"
-                className="w-full h-auto object-contain rounded-2xl"
+                className="w-full max-h-48 sm:max-h-56 object-contain rounded-xl"
               />
-              <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px] rounded-2xl">
-                <div className="h-11 w-11 rounded-full bg-carbon/90 border border-gold/60 flex items-center justify-center text-gold shadow-2xl">
-                  <Maximize2 size={20} />
+              <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px] rounded-xl">
+                <div className="h-9 w-9 rounded-full bg-carbon/90 border border-gold/60 flex items-center justify-center text-gold shadow-xl">
+                  <Maximize2 size={16} />
                 </div>
               </div>
             </div>
