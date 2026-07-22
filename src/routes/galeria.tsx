@@ -8,6 +8,7 @@ import {
   Camera
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { SafeImage } from "@/components/SafeImage";
 
 // Importación de assets locales
 import realVideo from "@/assets/nuevas-fotos/WhatsApp Video 2026-07-16 at 14.51.56.mp4";
@@ -376,16 +377,7 @@ const mediaItems: MediaItem[] = [
     category: "equipo",
     src: realImg_33,
     aspectRatio: "aspect-[4/3]",
-  },
-  {
-    id: "img-35",
-    title: "Catering y Celebraciones",
-    description: "Salón preparado para cumpleaños y eventos privados.",
-    type: "image",
-    category: "eventos",
-    src: realImg_34,
-    aspectRatio: "aspect-[4/3]",
-  },
+  }
 ];
 
 // Categorías del sistema de filtros
@@ -485,7 +477,7 @@ function GalleryPage() {
                 className="relative h-[320px] sm:h-[380px] w-full max-w-[500px] rounded-2xl overflow-hidden border border-border shadow-inner select-none cursor-ew-resize"
               >
                 {/* Imagen Después */}
-                <img 
+                <SafeImage 
                   src={tortillaReal} 
                   alt="" 
                   draggable={false}
@@ -497,7 +489,7 @@ function GalleryPage() {
                   className="absolute inset-0 overflow-hidden pointer-events-none select-none"
                   style={{ width: `${sliderPosition}%` }}
                 >
-                  <img 
+                  <SafeImage 
                     src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80" 
                     alt="" 
                     draggable={false}
@@ -559,7 +551,7 @@ function GalleryPage() {
                         {item.type === "video" ? (
                           <video src={item.src} playsInline autoPlay loop muted className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         ) : (
-                          <img src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
+                          <SafeImage src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         )}
                       </div>
                     </div>
@@ -576,7 +568,7 @@ function GalleryPage() {
                         {item.type === "video" ? (
                           <video src={item.src} playsInline autoPlay loop muted className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         ) : (
-                          <img src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
+                          <SafeImage src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         )}
                       </div>
                     </div>
@@ -593,7 +585,7 @@ function GalleryPage() {
                         {item.type === "video" ? (
                           <video src={item.src} playsInline autoPlay loop muted className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         ) : (
-                          <img src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
+                          <SafeImage src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         )}
                       </div>
                     </div>
@@ -610,7 +602,7 @@ function GalleryPage() {
                         {item.type === "video" ? (
                           <video src={item.src} playsInline autoPlay loop muted className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         ) : (
-                          <img src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
+                          <SafeImage src={item.src} alt="" loading="lazy" draggable={false} className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none" />
                         )}
                       </div>
                     </div>

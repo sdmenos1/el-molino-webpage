@@ -20,6 +20,7 @@ import flyer6 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.
 
 import { Reveal } from "@/components/Reveal";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { SafeImage } from "@/components/SafeImage";
 
 export const Route = createFileRoute("/desayunos")({
   head: () => ({
@@ -166,7 +167,7 @@ function Desayunos() {
     <>
       {/* HERO */}
       <section className="relative pt-40 pb-20 overflow-hidden">
-        <img src={imgChurros} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
+        <SafeImage src={imgChurros} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
         <div className="absolute inset-0 bg-gradient-to-b from-carbon/70 via-carbon/85 to-background" />
         <div className="relative mx-auto max-w-6xl px-6 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
@@ -192,7 +193,7 @@ function Desayunos() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <img src={imgAmericano} alt="Desayuno Americano en Cafetería El Molino" loading="lazy" className="h-[460px] w-full object-cover" />
+              <SafeImage src={imgAmericano} alt="Desayuno Americano en Cafetería El Molino" loading="lazy" className="h-[460px] w-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -212,7 +213,7 @@ function Desayunos() {
               <Reveal key={it.id} delay={i * 0.04}>
                 <article className="card-dark overflow-hidden group border border-border/60 hover:border-gold/50 transition-all duration-300 flex flex-col h-full">
                   <div className="relative h-56 overflow-hidden">
-                    <img
+                    <SafeImage
                       src={it.img}
                       alt={it.name}
                       loading="lazy"
@@ -264,7 +265,7 @@ function Desayunos() {
               onClick={() => setSelectedFlyer(fl.img)}
               className="relative w-40 sm:w-48 md:w-52 shrink-0 rounded-xl overflow-hidden border border-white/15 bg-carbon cursor-pointer shadow-lg transition-transform duration-300 hover:scale-105 group"
             >
-              <img
+              <SafeImage
                 src={fl.img}
                 alt={fl.title}
                 loading="lazy"
@@ -288,7 +289,7 @@ function Desayunos() {
               <Reveal key={it.id} delay={i * 0.04}>
                 <article className="card-dark overflow-hidden group border border-border/60 hover:border-gold/50 transition-all duration-300 flex flex-col h-full">
                   <div className="relative h-56 overflow-hidden">
-                    <img
+                    <SafeImage
                       src={it.img}
                       alt={it.name}
                       loading="lazy"
@@ -344,7 +345,7 @@ function Desayunos() {
           >
             <X size={26} />
           </button>
-          <img
+          <SafeImage
             src={selectedFlyer}
             alt="Flyer promocional"
             className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl border border-white/20"
