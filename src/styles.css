@@ -350,7 +350,8 @@
 .animate-marquee-horizontal {
   display: flex;
   width: max-content;
-  animation: marquee-horizontal 28s linear infinite;
+  animation: marquee-horizontal 35s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-horizontal:hover {
