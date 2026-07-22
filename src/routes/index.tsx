@@ -104,7 +104,15 @@ function Index() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Animación GSAP de entrada (única al cargar la página)
+  // Rotación automática de frases del Hero cada 5.5 segundos
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 5500);
+    return () => clearInterval(slideTimer);
+  }, []);
+
+  // Animación GSAP de entrada inicial
   useGSAP(
     () => {
       gsap.fromTo(
@@ -112,13 +120,20 @@ function Index() {
         { y: 40, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", stagger: 0.15 }
       );
-      gsap.fromTo(
-        ".hero-bg",
-        { scale: 1.08 },
-        { scale: 1, duration: 6, ease: "power2.out" }
-      );
     },
     { scope: slideRef }
+  );
+
+  // Animación GSAP suave al cambiar entre frases del Hero
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        ".hero-text-dynamic",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }
+      );
+    },
+    { dependencies: [activeSlide], scope: slideRef }
   );
 
   // Animación de paralaje de columnas en galería
@@ -215,14 +230,14 @@ function Index() {
             </span>
           </div>
 
-          <h1 className="hero-text font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-white mb-8 max-w-5xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
+          <h1 className="hero-text hero-text-dynamic font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-white mb-8 max-w-5xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
             {slides[activeSlide].title}{" "}
             <span className="gold-text-luminous block mt-2 font-light">
               {slides[activeSlide].highlight}
             </span>
           </h1>
 
-          <p className="hero-text text-lg sm:text-xl text-cream/95 max-w-2xl leading-relaxed mb-10 mx-auto font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+          <p className="hero-text hero-text-dynamic text-lg sm:text-xl text-cream/95 max-w-2xl leading-relaxed mb-10 mx-auto font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
             {slides[activeSlide].subtitle}
           </p>
 
