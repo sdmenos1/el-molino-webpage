@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Coffee, Info, Maximize2, Sparkles, Star, X } from "lucide-react";
+import { Clock, Coffee, Info, Maximize2, Sparkles, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
 import imgAmericano from "@/assets/desayunos/wp_media_6_americano.jpeg";
 import imgOmelette from "@/assets/desayunos/wp_media_45_desayuno.jpg";
 import imgFuerte from "@/assets/desayunos/wp_media_7_fuerte.jpeg";
@@ -34,12 +34,12 @@ export const Route = createFileRoute("/desayunos")({
 });
 
 const flyers = [
-  { img: flyer1, title: "Promoción Desayunos El Molino 1" },
-  { img: flyer2, title: "Promoción Desayunos El Molino 2" },
-  { img: flyer3, title: "Promoción Desayunos El Molino 3" },
-  { img: flyer4, title: "Promoción Desayunos El Molino 4" },
-  { img: flyer5, title: "Promoción Desayunos El Molino 5" },
-  { img: flyer6, title: "Promoción Desayunos El Molino 6" },
+  { img: flyer1, title: "Oferta Desayunos #1" },
+  { img: flyer2, title: "Oferta Desayunos #2" },
+  { img: flyer3, title: "Oferta Desayunos #3" },
+  { img: flyer4, title: "Oferta Desayunos #4" },
+  { img: flyer5, title: "Oferta Desayunos #5" },
+  { img: flyer6, title: "Oferta Desayunos #6" },
 ];
 
 const items = [
@@ -134,11 +134,19 @@ const items = [
 
 function Desayunos() {
   const [selectedFlyer, setSelectedFlyer] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollCarousel = (dir: "left" | "right") => {
+    if (carouselRef.current) {
+      const scrollAmount = dir === "left" ? -280 : 280;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
 
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-40 pb-24 overflow-hidden">
+      <section className="relative pt-40 pb-20 overflow-hidden">
         <img src={imgChurros} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
         <div className="absolute inset-0 bg-gradient-to-b from-carbon/70 via-carbon/85 to-background" />
         <div className="relative mx-auto max-w-6xl px-6 grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -157,62 +165,78 @@ function Desayunos() {
               </div>
               <a
                 href="#flyers"
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold/10 border border-gold/40 text-gold hover:bg-gold/20 text-sm font-medium transition-all backdrop-blur-md shadow-lg"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/40 text-gold hover:bg-gold/20 text-xs font-medium transition-all backdrop-blur-md shadow-lg"
               >
-                <Sparkles size={14} /> Ver Carteles y Promociones
+                <Sparkles size={13} /> Ver Carteles Informativos
               </a>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <img src={imgAmericano} alt="Desayuno Americano en Cafetería El Molino" loading="lazy" className="h-[520px] w-full object-cover" />
+              <img src={imgAmericano} alt="Desayuno Americano en Cafetería El Molino" loading="lazy" className="h-[460px] w-full object-cover" />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* SECCIÓN DE FLYERS Y CARTELES PROMOCIONALES */}
-      <section id="flyers" className="py-20 bg-carbon-2/80 border-y border-border/50 relative">
+      {/* SECCIÓN DE CAROUSEL COMPACTO DE FLYERS */}
+      <section id="flyers" className="py-10 bg-carbon-2/60 border-y border-border/40 relative">
         <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-widest mb-4">
-              <Sparkles size={14} /> Ofertas & Carteles Oficiales
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/25 text-gold text-[0.7rem] font-semibold uppercase tracking-wider mb-1">
+                <Sparkles size={12} /> Carteles Informativos del Local
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl text-white">Promociones & Ofertas en Barra</h2>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white">
-              Promociones Especiales de Desayunos
-            </h2>
-            <p className="mt-4 text-cream/70 text-base sm:text-lg leading-relaxed">
-              Descubre los carteles y promociones creados por el local. Haz clic en cualquiera de las imágenes para ampliarla a pantalla completa.
-            </p>
-          </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => scrollCarousel("left")}
+                className="p-2.5 rounded-full bg-carbon border border-white/10 text-cream/70 hover:text-gold hover:border-gold/50 transition-all shadow-md active:scale-95"
+                aria-label="Ver cartel anterior"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                onClick={() => scrollCarousel("right")}
+                className="p-2.5 rounded-full bg-carbon border border-white/10 text-cream/70 hover:text-gold hover:border-gold/50 transition-all shadow-md active:scale-95"
+                aria-label="Ver cartel siguiente"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={carouselRef}
+            className="flex gap-5 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 scroll-smooth"
+          >
             {flyers.map((fl, idx) => (
-              <Reveal key={idx} delay={idx * 0.05}>
-                <div
-                  onClick={() => setSelectedFlyer(fl.img)}
-                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-carbon cursor-pointer shadow-2xl transition-all duration-500 hover:border-gold/60 hover:shadow-gold/10 hover:-translate-y-1"
-                >
-                  <div className="aspect-[3/4] overflow-hidden bg-black/40">
-                    <img
-                      src={fl.img}
-                      alt={fl.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+              <div
+                key={idx}
+                onClick={() => setSelectedFlyer(fl.img)}
+                className="group relative w-44 sm:w-56 shrink-0 snap-start rounded-xl overflow-hidden border border-white/10 bg-carbon cursor-pointer shadow-lg transition-all duration-300 hover:border-gold/60 hover:-translate-y-1"
+              >
+                <div className="h-56 sm:h-64 overflow-hidden bg-black/40">
+                  <img
+                    src={fl.img}
+                    alt={fl.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/10 to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
+                <div className="absolute bottom-0 inset-x-0 p-3.5 flex items-center justify-between">
+                  <div>
+                    <span className="text-[0.65rem] text-gold font-bold uppercase tracking-wider block">Cartel #{idx + 1}</span>
+                    <span className="text-xs text-white/90 font-medium truncate block max-w-[130px]">{fl.title}</span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
-                  <div className="absolute bottom-0 inset-x-0 p-6 flex items-center justify-between">
-                    <div>
-                      <span className="text-xs text-gold font-semibold uppercase tracking-wider block mb-1">Flyer #{idx + 1}</span>
-                      <h3 className="font-serif text-lg text-white font-medium">{fl.title}</h3>
-                    </div>
-                    <div className="h-10 w-10 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-carbon transition-all">
-                      <Maximize2 size={16} />
-                    </div>
+                  <div className="h-7 w-7 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-carbon transition-all">
+                    <Maximize2 size={13} />
                   </div>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>
