@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Coffee, Info, Maximize2, Sparkles, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
 import imgAmericano from "@/assets/desayunos/wp_media_6_americano.jpeg";
@@ -136,12 +136,31 @@ function Desayunos() {
   const [selectedFlyer, setSelectedFlyer] = useState<string | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  // Auto-scroll loop para el carrusel de flyers cada 3.2 segundos
+  useEffect(() => {
+    const flyerTimer = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carouselRef.current.scrollBy({ left: 260, behavior: "smooth" });
+        }
+      }
+    }, 3200);
+
+    return () => clearInterval(flyerTimer);
+  }, []);
+
   const scrollCarousel = (dir: "left" | "right") => {
     if (carouselRef.current) {
       const scrollAmount = dir === "left" ? -280 : 280;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
+
+  const topItems = items.slice(0, 6);
+  const bottomItems = items.slice(6);
 
   return (
     <>
@@ -179,8 +198,65 @@ function Desayunos() {
         </div>
       </section>
 
-      {/* SECCIÓN DE CAROUSEL COMPACTO DE FLYERS */}
-      <section id="flyers" className="py-10 bg-carbon-2/60 border-y border-border/40 relative">
+      {/* CARTA DE DESAYUNOS - PRIMERA PARTE */}
+      <section className="pt-16 pb-8">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="flex items-end justify-between mb-10">
+            <h2 className="font-serif text-3xl sm:text-4xl">Carta de Desayunos</h2>
+            <div className="hidden sm:block flex-1 mx-8 gold-divider" />
+            <span className="text-xs uppercase tracking-[0.3em] text-gold">Añadir al pedido</span>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {topItems.map((it, i) => (
+              <Reveal key={it.id} delay={i * 0.04}>
+                <article className="card-dark overflow-hidden group border border-border/60 hover:border-gold/50 transition-all duration-300 flex flex-col h-full">
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={it.img}
+                      alt={it.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    {it.popular && (
+                      <span className="absolute top-4 left-4 bg-gold text-carbon text-[0.65rem] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                        Popular
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <div className="flex items-baseline justify-between gap-2 mb-2">
+                        <h3 className="font-serif text-xl group-hover:text-gold transition-colors">{it.name}</h3>
+                        <span className="font-serif text-xl gold-text font-bold shrink-0">
+                          {it.price.toFixed(2).replace(".", ",")} €
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-cream/70 leading-relaxed mb-3">{it.desc}</p>
+                      {it.allergens && (
+                        <span className="inline-block text-[0.7rem] text-muted-foreground/70 bg-white/5 border border-white/5 px-2.5 py-1 rounded">
+                          ({it.allergens})
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border/40">
+                      <AddToCartButton
+                        item={{ id: it.id, name: it.name, price: it.price, category: "Desayunos" }}
+                        variant="chip"
+                        label="Añadir al pedido"
+                      />
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN INTERMEDIA: CAROUSEL AUTOMÁTICO DE FLYERS */}
+      <section id="flyers" className="py-12 my-6 bg-carbon-2/70 border-y border-border/40 relative">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -242,17 +318,11 @@ function Desayunos() {
         </div>
       </section>
 
-      {/* CATÁLOGO DE TARJETAS */}
-      <section className="pb-16 pt-16">
+      {/* CARTA DE DESAYUNOS - SEGUNDA PARTE */}
+      <section className="pt-8 pb-16">
         <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="flex items-end justify-between mb-10">
-            <h2 className="font-serif text-3xl sm:text-4xl">Carta de Desayunos</h2>
-            <div className="hidden sm:block flex-1 mx-8 gold-divider" />
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Añadir al pedido</span>
-          </Reveal>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {items.map((it, i) => (
+            {bottomItems.map((it, i) => (
               <Reveal key={it.id} delay={i * 0.04}>
                 <article className="card-dark overflow-hidden group border border-border/60 hover:border-gold/50 transition-all duration-300 flex flex-col h-full">
                   <div className="relative h-56 overflow-hidden">
@@ -284,7 +354,6 @@ function Desayunos() {
                       )}
                     </div>
 
-                    {/* Botón de Añadir */}
                     <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border/40">
                       <AddToCartButton
                         item={{ id: it.id, name: it.name, price: it.price, category: "Desayunos" }}
