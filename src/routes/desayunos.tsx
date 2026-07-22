@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Coffee, Info, Star } from "lucide-react";
+import { Clock, Coffee, Info, Maximize2, Sparkles, Star, X } from "lucide-react";
 import imgAmericano from "@/assets/desayunos/wp_media_6_americano.jpeg";
 import imgOmelette from "@/assets/desayunos/wp_media_45_desayuno.jpg";
 import imgFuerte from "@/assets/desayunos/wp_media_7_fuerte.jpeg";
@@ -9,20 +10,37 @@ import imgCroissant from "@/assets/desayunos/wp_media_72_croisant-y-cafe.png";
 import imgBolleria from "@/assets/desayunos/wp_media_28_cafe-el-molino.jpeg";
 import imgChurros from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.53.55 (1).jpeg";
 import imgCafe from "@/assets/desayunos/wp_media_43_cafe-el-molino.jpg";
+
+import flyer1 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.53.jpeg";
+import flyer2 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.53 (2).jpeg";
+import flyer3 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.53 (3).jpeg";
+import flyer4 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.53 (4).jpeg";
+import flyer5 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.53 (5).jpeg";
+import flyer6 from "@/assets/desayuno-flyers/WhatsApp Image 2026-07-16 at 14.44.53 (6).jpeg";
+
 import { Reveal } from "@/components/Reveal";
 import { AddToCartButton } from "@/components/AddToCartButton";
 
 export const Route = createFileRoute("/desayunos")({
   head: () => ({
     meta: [
-      { title: "Desayunos · Cafetería El Molino en Fuenlabrada" },
-      { name: "description", content: "Empieza el día con nuestros desayunos tradicionales: tostadas con jamón, café recién hecho, churros y desayuno americano. Desde las 07:00 todos los días." },
-      { property: "og:title", content: "Desayunos · Cafetería El Molino" },
-      { property: "og:description", content: "Desayunos tradicionales y completos desde las 07:00 en Fuenlabrada." },
+      { title: "Desayunos · Carteles y Ofertas en Cafetería El Molino Fuenlabrada" },
+      { name: "description", content: "Empieza el día con nuestros desayunos tradicionales y promociones especiales: tostadas con jamón, café recién hecho, churros y desayuno americano. Desde las 07:00 todos los días." },
+      { property: "og:title", content: "Desayunos · Carteles y Ofertas en Cafetería El Molino" },
+      { property: "og:description", content: "Desayunos tradicionales y carteles promocionales desde las 07:00 en Fuenlabrada." },
     ],
   }),
   component: Desayunos,
 });
+
+const flyers = [
+  { img: flyer1, title: "Promoción Desayunos El Molino 1" },
+  { img: flyer2, title: "Promoción Desayunos El Molino 2" },
+  { img: flyer3, title: "Promoción Desayunos El Molino 3" },
+  { img: flyer4, title: "Promoción Desayunos El Molino 4" },
+  { img: flyer5, title: "Promoción Desayunos El Molino 5" },
+  { img: flyer6, title: "Promoción Desayunos El Molino 6" },
+];
 
 const items = [
   {
@@ -115,6 +133,8 @@ const items = [
 ];
 
 function Desayunos() {
+  const [selectedFlyer, setSelectedFlyer] = useState<string | null>(null);
+
   return (
     <>
       {/* HERO */}
@@ -131,8 +151,16 @@ function Desayunos() {
               Café recién molido, tostadas con jamón ibérico de primera, desayuno americano y crujientes porras artesanales.
               Desayunos tradicionales con el sabor y cariño de siempre en Fuenlabrada.
             </p>
-            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-2 text-sm text-gold">
-              <Clock size={14} /> Pedidos para llevar o consumir desde las 07:00 AM
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-2 text-sm text-gold">
+                <Clock size={14} /> Pedidos para llevar o consumir desde las 07:00 AM
+              </div>
+              <a
+                href="#flyers"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gold/10 border border-gold/40 text-gold hover:bg-gold/20 text-sm font-medium transition-all backdrop-blur-md shadow-lg"
+              >
+                <Sparkles size={14} /> Ver Carteles y Promociones
+              </a>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -143,8 +171,55 @@ function Desayunos() {
         </div>
       </section>
 
+      {/* SECCIÓN DE FLYERS Y CARTELES PROMOCIONALES */}
+      <section id="flyers" className="py-20 bg-carbon-2/80 border-y border-border/50 relative">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-widest mb-4">
+              <Sparkles size={14} /> Ofertas & Carteles Oficiales
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white">
+              Promociones Especiales de Desayunos
+            </h2>
+            <p className="mt-4 text-cream/70 text-base sm:text-lg leading-relaxed">
+              Descubre los carteles y promociones creados por el local. Haz clic en cualquiera de las imágenes para ampliarla a pantalla completa.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {flyers.map((fl, idx) => (
+              <Reveal key={idx} delay={idx * 0.05}>
+                <div
+                  onClick={() => setSelectedFlyer(fl.img)}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-carbon cursor-pointer shadow-2xl transition-all duration-500 hover:border-gold/60 hover:shadow-gold/10 hover:-translate-y-1"
+                >
+                  <div className="aspect-[3/4] overflow-hidden bg-black/40">
+                    <img
+                      src={fl.img}
+                      alt={fl.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
+                  <div className="absolute bottom-0 inset-x-0 p-6 flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-gold font-semibold uppercase tracking-wider block mb-1">Flyer #{idx + 1}</span>
+                      <h3 className="font-serif text-lg text-white font-medium">{fl.title}</h3>
+                    </div>
+                    <div className="h-10 w-10 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-carbon transition-all">
+                      <Maximize2 size={16} />
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CATÁLOGO DE TARJETAS */}
-      <section className="pb-16">
+      <section className="pb-16 pt-16">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="flex items-end justify-between mb-10">
             <h2 className="font-serif text-3xl sm:text-4xl">Carta de Desayunos</h2>
@@ -200,6 +275,28 @@ function Desayunos() {
           </div>
         </div>
       </section>
+
+      {/* LIGHTBOX MODAL FULLSCREEN */}
+      {selectedFlyer && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 backdrop-blur-lg p-4 sm:p-8 animate-fadeIn"
+          onClick={() => setSelectedFlyer(null)}
+        >
+          <button
+            onClick={() => setSelectedFlyer(null)}
+            className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
+            aria-label="Cerrar vista amplia"
+          >
+            <X size={26} />
+          </button>
+          <img
+            src={selectedFlyer}
+            alt="Flyer promocional"
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-2xl border border-white/20"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </>
   );
 }

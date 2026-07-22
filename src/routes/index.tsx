@@ -248,6 +248,9 @@ function Index() {
             <Link to="/menu" className="btn-ghost-gold backdrop-blur-sm">
               Ver Menú del Día <ArrowRight size={14} />
             </Link>
+            <Link to="/desayunos" className="btn-ghost-gold backdrop-blur-sm border-gold/30 text-gold hover:border-gold">
+              <Sparkles size={15} /> Flyers de Desayuno
+            </Link>
           </div>
 
           {/* Slide Indicators */}
