@@ -255,66 +255,28 @@ function Desayunos() {
         </div>
       </section>
 
-      {/* SECCIÓN INTERMEDIA: CAROUSEL AUTOMÁTICO DE FLYERS */}
-      <section id="flyers" className="py-12 my-6 bg-carbon-2/70 border-y border-border/40 relative">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/25 text-gold text-[0.7rem] font-semibold uppercase tracking-wider mb-1">
-                <Sparkles size={12} /> Carteles Informativos del Local
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-white">Promociones & Ofertas en Barra</h2>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => scrollCarousel("left")}
-                className="p-2.5 rounded-full bg-carbon border border-white/10 text-cream/70 hover:text-gold hover:border-gold/50 transition-all shadow-md active:scale-95"
-                aria-label="Ver cartel anterior"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                onClick={() => scrollCarousel("right")}
-                className="p-2.5 rounded-full bg-carbon border border-white/10 text-cream/70 hover:text-gold hover:border-gold/50 transition-all shadow-md active:scale-95"
-                aria-label="Ver cartel siguiente"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          <div
-            ref={carouselRef}
-            className="flex gap-5 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 scroll-smooth"
-          >
-            {flyers.map((fl, idx) => (
-              <div
-                key={idx}
-                onClick={() => setSelectedFlyer(fl.img)}
-                className="group relative w-44 sm:w-56 shrink-0 snap-start rounded-xl overflow-hidden border border-white/10 bg-carbon cursor-pointer shadow-lg transition-all duration-300 hover:border-gold/60 hover:-translate-y-1"
-              >
-                <div className="h-56 sm:h-64 overflow-hidden bg-black/40">
-                  <img
-                    src={fl.img}
-                    alt={fl.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/10 to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
-                <div className="absolute bottom-0 inset-x-0 p-3.5 flex items-center justify-between">
-                  <div>
-                    <span className="text-[0.65rem] text-gold font-bold uppercase tracking-wider block">Cartel #{idx + 1}</span>
-                    <span className="text-xs text-white/90 font-medium truncate block max-w-[130px]">{fl.title}</span>
-                  </div>
-                  <div className="h-7 w-7 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-carbon transition-all">
-                    <Maximize2 size={13} />
-                  </div>
+      {/* SECCIÓN INTERMEDIA: MARQUEE AUTOMÁTICO DE FLYERS 100% LIMPIO */}
+      <section id="flyers" className="py-6 my-8 bg-black/40 border-y border-white/10 overflow-hidden relative">
+        <div className="animate-marquee-horizontal gap-6 px-4">
+          {[...flyers, ...flyers, ...flyers].map((fl, idx) => (
+            <div
+              key={idx}
+              onClick={() => setSelectedFlyer(fl.img)}
+              className="relative w-44 sm:w-52 shrink-0 rounded-2xl overflow-hidden border border-white/15 bg-carbon cursor-pointer shadow-xl transition-transform duration-300 hover:scale-105 group"
+            >
+              <img
+                src={fl.img}
+                alt="Promoción Desayuno El Molino"
+                loading="lazy"
+                className="h-56 sm:h-64 w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gold/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                <div className="h-10 w-10 rounded-full bg-carbon/80 border border-gold/50 flex items-center justify-center text-gold shadow-2xl">
+                  <Maximize2 size={18} />
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
