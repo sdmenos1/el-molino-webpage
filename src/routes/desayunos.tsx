@@ -255,28 +255,33 @@ function Desayunos() {
         </div>
       </section>
 
-      {/* SECCIÓN INTERMEDIA: MARQUEE AUTOMÁTICO DE FLYERS 100% LIMPIO */}
-      <section id="flyers" className="py-6 my-8 bg-black/40 border-y border-white/10 overflow-hidden relative">
-        <div className="animate-marquee-horizontal gap-6 px-4">
-          {[...flyers, ...flyers, ...flyers].map((fl, idx) => (
-            <div
-              key={idx}
-              onClick={() => setSelectedFlyer(fl.img)}
-              className="relative w-44 sm:w-52 shrink-0 rounded-2xl overflow-hidden border border-white/15 bg-carbon cursor-pointer shadow-xl transition-transform duration-300 hover:scale-105 group"
-            >
-              <img
-                src={fl.img}
-                alt="Promoción Desayuno El Molino"
-                loading="lazy"
-                className="h-56 sm:h-64 w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gold/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-                <div className="h-10 w-10 rounded-full bg-carbon/80 border border-gold/50 flex items-center justify-center text-gold shadow-2xl">
-                  <Maximize2 size={18} />
+      {/* SECCIÓN INTERMEDIA: CAROUSEL DE FLYERS 100% VISIBLES SIN DUPLICAR */}
+      <section id="flyers" className="py-8 my-8 bg-carbon-2/60 border-y border-border/40 relative">
+        <div className="mx-auto max-w-7xl px-6">
+          <div
+            ref={carouselRef}
+            className="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-3 scroll-smooth"
+          >
+            {flyers.map((fl, idx) => (
+              <div
+                key={idx}
+                onClick={() => setSelectedFlyer(fl.img)}
+                className="relative w-64 sm:w-72 md:w-80 shrink-0 snap-center rounded-2xl overflow-hidden border border-white/15 bg-carbon cursor-pointer shadow-2xl transition-all duration-300 hover:border-gold/60 hover:-translate-y-1 group"
+              >
+                <img
+                  src={fl.img}
+                  alt={fl.title}
+                  loading="lazy"
+                  className="w-full h-auto object-contain rounded-2xl"
+                />
+                <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px] rounded-2xl">
+                  <div className="h-11 w-11 rounded-full bg-carbon/90 border border-gold/60 flex items-center justify-center text-gold shadow-2xl">
+                    <Maximize2 size={20} />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
