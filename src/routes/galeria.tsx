@@ -14,7 +14,7 @@ import realVideo from "@/assets/nuevas-fotos/WhatsApp Video 2026-07-16 at 14.51.
 import realImg_1 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.43.42 (8).jpeg";
 import realImg_2 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.43.41 (1).jpeg";
 import realImg_3 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.43.43.jpeg";
-import realImg_4 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.55.44.jpeg";
+import realImg_4 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.44.53 (3).jpeg";
 import realImg_5 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.55.51.jpeg";
 import realImg_6 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.50 (6).jpeg";
 import realImg_7 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.49 (5).jpeg";
@@ -44,7 +44,6 @@ import realImg_30 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41
 import realImg_31 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.48.51.jpeg";
 import realImg_32 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.55.28.jpeg";
 import realImg_33 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.40.35.jpeg";
-import realImg_34 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.52.00.jpeg";
 import tortillaReal from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.50 (6).jpeg";
 
 export const Route = createFileRoute("/galeria")({
