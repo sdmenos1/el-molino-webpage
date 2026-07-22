@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soportec Premium | Soluciones Informáticas de Élite</title>
+    <!-- SEO Optimization Meta Tags -->
+    <meta name="description" content="Servicio técnico informático premium para empresas y particulares. Reparación, mantenimiento, redes, consumibles e impresoras con calidad garantizada.">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#FDFBF7',
+                            100: '#FAF4E4',
+                            200: '#F2E3BC',
+                            300: '#E6CC8D',
+                            400: '#D9B25E',
+                            500: '#D4AF37', /* Main Premium Gold */
+                            600: '#B8942B',
+                            700: '#94731F',
+                            800: '#6E5316',
+                            900: '#4A360D',
+                        },
+                        dark: {
+                            950: '#060606',
+                            900: '#0A0A0A', /* Deep Black */
+                            800: '#121212',
+                            700: '#1C1C1E',
+                            600: '#2C2C2E',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom Premium Micro-interactions and Glassmorphism */
+        .glass-premium {
+            background: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .glass-gold-hover:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+            transform: translateY(-4px);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 30%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #D4AF37, #AA7C11) 1;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+        /* Skeleton Glow Animation */
+        @keyframes subtle-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        .gold-glow-element {
+            animation: subtle-glow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-gray-100 font-sans overflow-x-hidden">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-dark-900 border-b border-gold-500/10 text-xs py-2 px-4 md:px-8 flex justify-between items-center text-gray-400 z-50 relative">
+        <div class="flex items-center space-x-6">
+            <span class="hover:text-gold-500 transition-colors cursor-pointer"><i class="fas fa-phone text-gold-500 mr-2"></i> +34 900 100 200</span>
+            <span class="hidden md:inline hover:text-gold-500 transition-colors cursor-pointer"><i class="fas fa-envelope text-gold-500 mr-2"></i> elite@soportec.es</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="flex items-center text-emerald-400"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-2 animate-ping"></span> Soporte Técnico Activo</span>
+            <span class="hidden lg:inline text-gray-500">|</span>
+            <span class="hidden lg:inline"><i class="far fa-clock text-gold-500 mr-1"></i> Lun - Vie: 9:00 - 19:00</span>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-dark-950/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg shadow-gold-500/20 transform group-hover:rotate-6 transition-transform">
+                    <i class="fas fa-laptop-medical text-dark-950 text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-wider text-white block">SOPORTEC</span>
+                    <span class="text-[9px] text-gold-500 font-bold uppercase tracking-[0.2em] -mt-1 block">Técnica de Élite</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#inicio" class="text-gray-300 hover:text-gold-500 transition-colors duration-200">Inicio</a>
+                <a href="#servicios" class="text-gray-300 hover:text-gold-500 transition-colors duration-200">Servicios</a>
+                <a href="#productos" class="text-gray-300 hover:text-gold-500 transition-colors duration-200">Productos & Suministros</a>
+                <a href="#beneficios" class="text-gray-300 hover:text-gold-500 transition-colors duration-200">Diferenciales</a>
+                <a href="#proceso" class="text-gray-300 hover:text-gold-500 transition-colors duration-200">Proceso</a>
+            </nav>
+
+            <!-- Nav Actions -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <button onclick="openQuoteModal()" class="px-5 py-2.5 rounded-lg border border-gold-500/50 text-gold-500 hover:bg-gold-500 hover:text-dark-950 font-bold transition-all duration-300 text-sm">
+                    Presupuesto Gratis
+                </button>
+                <a href="https://wa.me/34900100200" target="_blank" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 text-dark-950 font-bold hover:brightness-110 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40 transition-all duration-300 text-sm flex items-center">
+                    <i class="fab fa-whatsapp mr-2 text-lg"></i> Urgente
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-gold-500 focus:outline-none" aria-label="Abrir menú">
+                <i id="menu-icon" class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-900 border-b border-gold-500/10 px-4 py-6 space-y-4">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-500 text-base font-semibold">Inicio</a>
+            <a href="#servicios" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-500 text-base font-semibold">Servicios</a>
+            <a href="#productos" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-500 text-base font-semibold">Productos & Suministros</a>
+            <a href="#beneficios" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-500 text-base font-semibold">Diferenciales</a>
+            <a href="#proceso" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-500 text-base font-semibold">Proceso</a>
+            <div class="pt-4 border-t border-white/10 flex flex-col space-y-3">
+                <button onclick="openQuoteModal(); toggleMobileMenu();" class="w-full py-3 rounded-lg border border-gold-500/50 text-gold-500 hover:bg-gold-500 hover:text-dark-950 font-bold transition-all duration-300 text-center">
+                    Presupuesto Gratis
+                </button>
+                <a href="https://wa.me/34900100200" target="_blank" class="w-full py-3 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 text-dark-950 font-bold text-center flex justify-center items-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Asistencia Inmediata
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-12">
+        <!-- Background Decorative Blur & Elements -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.08),transparent_50%)]"></div>
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-gold-500/5 rounded-full blur-[100px] gold-glow-element"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-gold-600/5 rounded-full blur-[80px] gold-glow-element"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Hero Copy -->
+            <div class="text-left space-y-6">
+                <div class="inline-flex items-center space-x-2 bg-gold-500/10 border border-gold-500/25 px-4 py-1.5 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-gold-500 animate-ping"></span>
+                    <span class="text-xs text-gold-400 font-bold tracking-widest uppercase">Garantía Profesional Certificada</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    <span class="block text-white">Soluciones Informáticas</span>
+                    <span class="block gold-gradient-text">Profesionales para</span>
+                    <span class="block text-white">Empresas y Particulares</span>
+                </h1>
+
+                <p class="text-lg text-gray-400 max-w-xl">
+                    Reparamos, mantenemos y optimizamos tus equipos de manera rápida y transparente para que tu negocio o productividad personal nunca se detenga. Excelencia técnica sin concesiones.
+                </p>
+
+                <!-- Hero Stats -->
+                <div class="grid grid-cols-3 gap-4 py-4 border-y border-white/5 my-8">
+                    <div>
+                        <span class="block text-2xl md:text-3xl font-extrabold text-gold-500">15+</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider">Años de Éxito</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl md:text-3xl font-extrabold text-gold-500">10k+</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider">Equipos Reparados</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl md:text-3xl font-extrabold text-gold-500">&lt; 24h</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider">Servicio Promedio</span>
+                    </div>
+                </div>
+
+                <!-- Call to Actions -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openQuoteModal()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-dark-950 font-bold hover:scale-[1.02] active:scale-95 shadow-xl shadow-gold-500/20 hover:shadow-gold-500/35 transition-all duration-300 text-center flex items-center justify-center space-x-2">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Solicitar Presupuesto</span>
+                    </button>
+                    <a href="https://wa.me/34900100200" target="_blank" class="px-8 py-4 rounded-xl border border-white/10 hover:border-gold-500/50 bg-white/5 hover:bg-gold-500/10 text-white font-bold transition-all duration-300 text-center flex items-center justify-center space-x-2">
+                        <i class="fab fa-whatsapp text-emerald-400 text-xl"></i>
+                        <span>Contactar por WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Graphic (Luxury Device Render) -->
+            <div class="relative lg:ml-6 flex justify-center items-center">
+                <div class="relative w-full max-w-[500px]">
+                    <!-- Golden Halo behind device -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-gold-500/10 to-transparent rounded-3xl blur-3xl transform -rotate-6"></div>
+                    
+                    <!-- Main Frame (Glass Device Interface) -->
+                    <div class="relative glass-premium p-8 rounded-3xl border border-gold-500/20 shadow-2xl space-y-6 transform hover:scale-[1.01] transition-transform duration-500">
+                        <div class="flex justify-between items-center pb-4 border-b border-white/5">
+                            <div class="flex space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                            </div>
+                            <span class="text-xs text-gold-400 font-mono">diagnostico_sistema.sh</span>
+                        </div>
+                        
+                        <!-- Terminal Simulated Diagnostic -->
+                        <div class="space-y-3 font-mono text-xs text-gray-300">
+                            <p class="text-gray-500"># Analizando hardware del sistema...</p>
+                            <p class="text-green-400"><i class="fas fa-check-circle mr-2"></i> RAM Kingston DDR5 32GB - OK</p>
+                            <p class="text-green-400"><i class="fas fa-check-circle mr-2"></i> NVMe Samsung EVO 1TB - OK</p>
+                            <p class="text-yellow-400 animate-pulse"><i class="fas fa-exclamation-triangle mr-2"></i> GPU Térmicos Críticos - Requiere Limpieza & Pasta Térmica</p>
+                            <p class="text-gold-500"><i class="fas fa-tools mr-2"></i> Recomendación: Mantenimiento Preventivo Soportec</p>
+                        </div>
+
+                        <!-- Mini Interactive Widget -->
+                        <div class="bg-dark-900 p-4 rounded-xl border border-white/5">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold text-gray-300">Estado de la Reparación</span>
+                                <span class="text-[10px] bg-gold-500/20 text-gold-400 px-2.5 py-0.5 rounded-full font-bold">En Progreso</span>
+                            </div>
+                            <div class="w-full bg-dark-950 rounded-full h-2 mb-1">
+                                <div class="bg-gradient-to-r from-gold-500 to-gold-300 h-2 rounded-full w-4/5 animate-pulse"></div>
+                            </div>
+                            <span class="text-[10px] text-gray-400">Entrega Estimada: Hoy - 18:30 h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-24 bg-dark-900 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(212,175,55,0.03),transparent_60%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs">Excelencia Funcional</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nuestros Servicios Técnicos Premium</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-500 to-transparent mx-auto mt-2 rounded"></div>
+                <p class="text-gray-400 text-sm sm:text-base">
+                    Equipamiento de última generación, técnicos altamente certificados y procesos estandarizados para garantizar un resultado perfecto en cada intervención.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Reparación de Ordenadores</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Diagnóstico profundo, cambio de componentes dañados, placas base, pantallas y optimizaciones de hardware.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Reparación de Ordenadores')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Soporte e Impresoras</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Calibración, mantenimiento mecánico, desatranques, reparación de fusores y configuración en red.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Soporte de Impresoras')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Soporte para Empresas</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Mantenimiento preventivo, planes mensuales de soporte a medida, copias de seguridad remotas y monitorización.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Mantenimiento para Empresas')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Desinfección & Optimización</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Eliminación completa de malware, troyanos, ransomware y optimización profunda de sistemas lentos.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Desinfección y Optimización')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Recuperación de Datos</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Recuperación de información crítica en discos dañados, SSDs, tarjetas de memoria y memorias USB corrompidas.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Recuperación de Datos')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Instalación de Redes</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Cableado estructurado, optimización de cobertura WiFi empresarial, cortafuegos y seguridad perimetral.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Instalación de Redes')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Instalación de Software</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Licenciamiento legal, sistemas operativos, suites de diseño, software ERP e integraciones de herramientas.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Instalación de Software')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="glass-premium p-6 rounded-2xl glass-gold-hover transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-6 border border-gold-500/20">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-3">Soporte Técnico Remoto</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                            Solución instantánea de problemas de software y configuraciones menores mediante conexiones seguras y cifradas.
+                        </p>
+                    </div>
+                    <button onclick="requestSpecificService('Soporte Técnico Remoto')" class="text-xs font-bold text-gold-500 hover:text-white transition-colors flex items-center mt-4">
+                        Saber más <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase Section -->
+    <section id="productos" class="py-24 bg-dark-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs">Gama Premium</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Suministros y Equipamiento de Alta Gama</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-500 to-transparent mx-auto mt-2 rounded"></div>
+                <p class="text-gray-400 text-sm">
+                    Solo trabajamos con marcas líderes y componentes homologados que garantizan un rendimiento óptimo. Envío urgente o instalación profesional disponible.
+                </p>
+
+                <!-- Premium Filters -->
+                <div class="flex flex-wrap justify-center gap-2 mt-8">
+                    <button onclick="filterCategory('todos')" id="filter-btn-todos" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-gold-500 text-dark-950 shadow-md">Todos</button>
+                    <button onclick="filterCategory('impresoras')" id="filter-btn-impresoras" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 text-gray-400 hover:bg-gold-500 hover:text-dark-950">Impresoras</button>
+                    <button onclick="filterCategory('componentes')" id="filter-btn-componentes" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 text-gray-400 hover:bg-gold-500 hover:text-dark-950">Componentes</button>
+                    <button onclick="filterCategory('suministros')" id="filter-btn-suministros" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 text-gray-400 hover:bg-gold-500 hover:text-dark-950">Consumibles & Suministros</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1: Impresora -->
+                <div class="product-card glass-premium rounded-2xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500" data-category="impresoras">
+                    <div class="relative group overflow-hidden bg-white/5 h-64 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=500&q=80" alt="Impresora Láser Corporativa" class="object-cover h-full w-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/0a0a0a/d4af37?text=Impresora+Laser'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent opacity-70"></div>
+                        <span class="absolute top-4 right-4 bg-gold-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Ventas</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Sistemas de Impresión</span>
+                        <h3 class="text-lg font-bold text-white">HP LaserJet Enterprise M507x</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Impresora de alta velocidad y seguridad mejorada, diseñada para optimizar los flujos de trabajo de empresas exigentes.
+                        </p>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-2xl font-extrabold text-white">489,00 €<span class="text-xs text-gray-500 font-normal"> /ud</span></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="requestInfo('HP LaserJet Enterprise M507x')" class="py-2.5 rounded-lg border border-white/10 hover:border-gold-500 text-xs font-bold text-gray-300 hover:text-gold-500 transition-colors">
+                                Consultar
+                            </button>
+                            <button onclick="addToSimulatedCart('HP LaserJet Enterprise M507x', 489.00)" class="py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-dark-950 text-xs font-bold transition-colors">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Toner -->
+                <div class="product-card glass-premium rounded-2xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500" data-category="suministros">
+                    <div class="relative group overflow-hidden bg-white/5 h-64 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?auto=format&fit=crop&w=500&q=80" alt="Tóner y cartuchos premium" class="object-cover h-full w-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/0a0a0a/d4af37?text=Toner+Cartridge'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent opacity-70"></div>
+                        <span class="absolute top-4 right-4 bg-gold-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Premium</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Tóner & Consumibles</span>
+                        <h3 class="text-lg font-bold text-white">Pack Premium Tóner HP CF289A</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Rendimiento inigualable y negros profundos garantizados. Optimizado para un ciclo de hasta 5.000 páginas perfectas.
+                        </p>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-2xl font-extrabold text-white">125,00 €<span class="text-xs text-gray-500 font-normal"> /ud</span></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="requestInfo('Pack Premium Tóner HP CF289A')" class="py-2.5 rounded-lg border border-white/10 hover:border-gold-500 text-xs font-bold text-gray-300 hover:text-gold-500 transition-colors">
+                                Consultar
+                            </button>
+                            <button onclick="addToSimulatedCart('Pack Premium Tóner HP CF289A', 125.00)" class="py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-dark-950 text-xs font-bold transition-colors">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: NVMe Component -->
+                <div class="product-card glass-premium rounded-2xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500" data-category="componentes">
+                    <div class="relative group overflow-hidden bg-white/5 h-64 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&w=500&q=80" alt="Disco NVMe SSD Samsung" class="object-cover h-full w-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/0a0a0a/d4af37?text=NVMe+SSD'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent opacity-70"></div>
+                        <span class="absolute top-4 right-4 bg-emerald-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Stock Listo</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Componentes del Sistema</span>
+                        <h3 class="text-lg font-bold text-white">SSD Samsung 990 PRO 2TB PCIe 4.0</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Velocidades de lectura/escritura secuencial de hasta 7450/6900 MB/s. Máximo rendimiento técnico para profesionales.
+                        </p>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-2xl font-extrabold text-white">189,00 €<span class="text-xs text-gray-500 font-normal"> /ud</span></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="requestInfo('SSD Samsung 990 PRO 2TB')" class="py-2.5 rounded-lg border border-white/10 hover:border-gold-500 text-xs font-bold text-gray-300 hover:text-gold-500 transition-colors">
+                                Consultar
+                            </button>
+                            <button onclick="addToSimulatedCart('SSD Samsung 990 PRO 2TB', 189.00)" class="py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-dark-950 text-xs font-bold transition-colors">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: RAM Premium -->
+                <div class="product-card glass-premium rounded-2xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500" data-category="componentes">
+                    <div class="relative group overflow-hidden bg-white/5 h-64 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=500&q=80" alt="Corsair Dominator RAM" class="object-cover h-full w-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/0a0a0a/d4af37?text=DDR5+RAM'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent opacity-70"></div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Memoria RAM</span>
+                        <h3 class="text-lg font-bold text-white">Corsair Dominator Platinum 32GB DDR5</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Diseñadas con precisión premium y disipadores de aluminio pulido. Rendimiento asegurado para cargas extremas.
+                        </p>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-2xl font-extrabold text-white">165,00 €<span class="text-xs text-gray-500 font-normal"> /ud</span></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="requestInfo('Corsair Dominator Platinum 32GB DDR5')" class="py-2.5 rounded-lg border border-white/10 hover:border-gold-500 text-xs font-bold text-gray-300 hover:text-gold-500 transition-colors">
+                                Consultar
+                            </button>
+                            <button onclick="addToSimulatedCart('Corsair Dominator Platinum 32GB DDR5', 165.00)" class="py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-dark-950 text-xs font-bold transition-colors">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Ergonomic Supply -->
+                <div class="product-card glass-premium rounded-2xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500" data-category="suministros">
+                    <div class="relative group overflow-hidden bg-white/5 h-64 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=500&q=80" alt="Mouse ergonómico Premium" class="object-cover h-full w-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/0a0a0a/d4af37?text=MX+Master+Mouse'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent opacity-70"></div>
+                        <span class="absolute top-4 right-4 bg-gold-500 text-dark-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Ergonomía</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Accesorios de Oficina</span>
+                        <h3 class="text-lg font-bold text-white">Logitech MX Master 3S Premium</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Ratón ergonómico diseñado para programadores, analistas y profesionales del diseño. Desplazamiento ultrarrápido MagSpeed.
+                        </p>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-2xl font-extrabold text-white">109,00 €<span class="text-xs text-gray-500 font-normal"> /ud</span></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="requestInfo('Logitech MX Master 3S')" class="py-2.5 rounded-lg border border-white/10 hover:border-gold-500 text-xs font-bold text-gray-300 hover:text-gold-500 transition-colors">
+                                Consultar
+                            </button>
+                            <button onclick="addToSimulatedCart('Logitech MX Master 3S', 109.00)" class="py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-dark-950 text-xs font-bold transition-colors">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Impresora Compacta -->
+                <div class="product-card glass-premium rounded-2xl overflow-hidden border border-white/5 hover:border-gold-500/30 transition-all duration-500" data-category="impresoras">
+                    <div class="relative group overflow-hidden bg-white/5 h-64 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=500&q=80" alt="Epson WorkForce" class="object-cover h-full w-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x400/0a0a0a/d4af37?text=Compact+Printer'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 to-transparent opacity-70"></div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Sistemas de Impresión</span>
+                        <h3 class="text-lg font-bold text-white">Epson WorkForce Pro WF-4830</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Imprenta de alta calidad, ágil conectividad inalámbrica y rendimiento empresarial rentable en un tamaño optimizado.
+                        </p>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-2xl font-extrabold text-white">199,00 €<span class="text-xs text-gray-500 font-normal"> /ud</span></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="requestInfo('Epson WorkForce Pro WF-4830')" class="py-2.5 rounded-lg border border-white/10 hover:border-gold-500 text-xs font-bold text-gray-300 hover:text-gold-500 transition-colors">
+                                Consultar
+                            </button>
+                            <button onclick="addToSimulatedCart('Epson WorkForce Pro WF-4830', 199.00)" class="py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-dark-950 text-xs font-bold transition-colors">
+                                Comprar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Benefits / Differentials Section -->
+    <section id="beneficios" class="py-24 bg-dark-900 border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs">Por Qué Elegir Soportec</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Compromiso con la Excelencia Absoluta</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-500 to-transparent mx-auto mt-2 rounded"></div>
+            </div>
+
+            <!-- Benefits Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="glass-premium p-8 rounded-2xl flex items-start space-x-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 flex-shrink-0 flex items-center justify-center border border-gold-500/20 text-gold-500 text-2xl">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-white">Diagnóstico Exprés</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Revisamos tu sistema inmediatamente para identificar anomalías exactas en un tiempo récord, con trazabilidad completa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="glass-premium p-8 rounded-2xl flex items-start space-x-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 flex-shrink-0 flex items-center justify-center border border-gold-500/20 text-gold-500 text-2xl">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-white">Presupuesto Cerrado</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Sin costes ocultos. Recibe tu propuesta de servicio transparente y sin ningún tipo de compromiso de permanencia.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="glass-premium p-8 rounded-2xl flex items-start space-x-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 flex-shrink-0 flex items-center justify-center border border-gold-500/20 text-gold-500 text-2xl">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-white">Técnicos Certificados</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Todo nuestro equipo cuenta con certificaciones oficiales de marcas como Microsoft, HP, Cisco y Apple.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="glass-premium p-8 rounded-2xl flex items-start space-x-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 flex-shrink-0 flex items-center justify-center border border-gold-500/20 text-gold-500 text-2xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-white">Garantía en Reparaciones</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Todas las reparaciones disponen de una garantía premium. Si no queda perfecto, lo solucionamos sin coste adicional.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="glass-premium p-8 rounded-2xl flex items-start space-x-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 flex-shrink-0 flex items-center justify-center border border-gold-500/20 text-gold-500 text-2xl">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-white">Atención Personalizada</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Asesoramos y adaptamos el servicio tanto si eres un profesional independiente como una gran empresa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="glass-premium p-8 rounded-2xl flex items-start space-x-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 flex-shrink-0 flex items-center justify-center border border-gold-500/20 text-gold-500 text-2xl">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-white">Cobertura Omnicanal</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Asistencia técnica a domicilio, en nuestras oficinas o de forma remota garantizando una resolución inmediata.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elegant Timeline Process Section -->
+    <section id="proceso" class="py-24 bg-dark-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs">Simplicidad & Rapidez</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nuestro Flujo de Trabajo en 4 Pasos</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-500 to-transparent mx-auto mt-2 rounded"></div>
+            </div>
+
+            <!-- Timeline Elements -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Line indicator for Desktop (Only visual) -->
+                <div class="hidden md:block absolute top-12 left-8 right-8 h-[2px] bg-gradient-to-r from-gold-500/50 via-gold-500/20 to-transparent -z-10"></div>
+                
+                <!-- Step 1 -->
+                <div class="glass-premium p-6 rounded-2xl relative text-center flex flex-col items-center group">
+                    <span class="absolute -top-4 left-6 bg-gold-500 text-dark-950 w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-sm shadow-md">01</span>
+                    <div class="w-16 h-16 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-4 border border-gold-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Contacto Inicial</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Ponte en contacto mediante nuestra web, teléfono o canal de soporte rápido en WhatsApp.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-premium p-6 rounded-2xl relative text-center flex flex-col items-center group">
+                    <span class="absolute -top-4 left-6 bg-gold-500 text-dark-950 w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-sm shadow-md">02</span>
+                    <div class="w-16 h-16 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-4 border border-gold-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Diagnóstico Preciso</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Analizamos detalladamente el hardware y software de tu equipo para identificar el origen exacto del fallo.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-premium p-6 rounded-2xl relative text-center flex flex-col items-center group">
+                    <span class="absolute -top-4 left-6 bg-gold-500 text-dark-950 w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-sm shadow-md">03</span>
+                    <div class="w-16 h-16 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-4 border border-gold-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Reparación o Cambio</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Llevamos a cabo la sustitución de piezas o la limpieza de software empleando metodologías profesionales.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-premium p-6 rounded-2xl relative text-center flex flex-col items-center group">
+                    <span class="absolute -top-4 left-6 bg-gold-500 text-dark-950 w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-sm shadow-md">04</span>
+                    <div class="w-16 h-16 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl mb-4 border border-gold-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Entrega de Éxito</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Te devolvemos tu sistema testeado a fondo, optimizado al 100% y con cobertura de garantía premium garantizada.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-dark-900 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs">Experiencias de Éxito</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nuestros Clientes Satisfechos</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-500 to-transparent mx-auto mt-2 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-premium p-8 rounded-2xl relative flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <!-- Rating -->
+                        <div class="flex text-gold-500 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-300 italic leading-relaxed">
+                            "Llevamos más de tres años confiando el mantenimiento informático de nuestras oficinas a Soportec. Su nivel de respuesta y la rapidez de su asistencia técnica remota son simplemente impecables."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 pt-4 border-t border-white/5">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Alejandra Torres" class="w-10 h-10 rounded-full object-cover border border-gold-500" onerror="this.src='https://placehold.co/100x100/0a0a0a/d4af37?text=AT'">
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Alejandra Torres</h4>
+                            <span class="text-[10px] text-gray-500 uppercase font-semibold">Directora de Operaciones, FinTech Group</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass-premium p-8 rounded-2xl relative flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <!-- Rating -->
+                        <div class="flex text-gold-500 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-300 italic leading-relaxed">
+                            "Se me rompió el disco duro con toda la contabilidad de mi estudio. Soportec no solo recuperó el 100% de la información, sino que me instalaron un disco SSD de alta velocidad en menos de 24 horas."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 pt-4 border-t border-white/5">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Roberto Benítez" class="w-10 h-10 rounded-full object-cover border border-gold-500" onerror="this.src='https://placehold.co/100x100/0a0a0a/d4af37?text=RB'">
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Carlos Benítez</h4>
+                            <span class="text-[10px] text-gray-500 uppercase font-semibold">Fundador, Benítez Arquitectos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-premium p-8 rounded-2xl relative flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <!-- Rating -->
+                        <div class="flex text-gold-500 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-300 italic leading-relaxed">
+                            "Adquirimos dos impresoras corporativas con su respectivo contrato de mantenimiento y suministro de tóners. El ahorro que hemos conseguido en costes de consumibles y tiempo de respuesta es extraordinario."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 mt-8 pt-4 border-t border-white/5">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80" alt="Sonia Ruiz" class="w-10 h-10 rounded-full object-cover border border-gold-500" onerror="this.src='https://placehold.co/100x100/0a0a0a/d4af37?text=SR'">
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Sonia Ruiz</h4>
+                            <span class="text-[10px] text-gray-500 uppercase font-semibold">Administradora, Inmobiliaria Ruiz</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-24 bg-dark-950 relative overflow-hidden border-t border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-r from-gold-500/5 to-transparent pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8 glass-premium p-12 rounded-3xl border border-gold-500/20">
+            <div class="w-16 h-16 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 text-3xl mx-auto border border-gold-500/20 animate-bounce">
+                <i class="fas fa-rocket"></i>
+            </div>
+            
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                ¿Tu equipo ha dejado de funcionar?<br>
+                <span class="gold-gradient-text">Recupera tu productividad hoy mismo.</span>
+            </h2>
+
+            <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+                No arriesgues la seguridad de tus sistemas ni permitas que una avería detenga tu flujo diario de trabajo. Solicita tu presupuesto gratuito o agenda una videollamada con un técnico certificado.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="openQuoteModal()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-dark-950 font-bold hover:scale-[1.02] active:scale-95 shadow-xl shadow-gold-500/20 hover:shadow-gold-500/40 transition-all duration-300 text-center">
+                    Solicitar Diagnóstico Gratuito
+                </button>
+                <a href="https://wa.me/34900100200" target="_blank" class="px-8 py-4 rounded-xl border border-gold-500/40 text-gold-500 hover:bg-gold-500/10 font-bold transition-all duration-300 text-center flex items-center justify-center space-x-2">
+                    <i class="fab fa-whatsapp text-emerald-400 text-xl"></i>
+                    <span>Contactar con un Especialista</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark-950 text-gray-400 border-t border-white/5 py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <!-- Brand -->
+            <div class="space-y-4">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg shadow-gold-500/20 transform group-hover:rotate-6 transition-transform">
+                        <i class="fas fa-laptop-medical text-dark-950 text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-wider text-white block">SOPORTEC</span>
+                        <span class="text-[9px] text-gold-500 font-bold uppercase tracking-[0.2em] -mt-1 block">Técnica de Élite</span>
+                    </div>
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed">
+                    Proveedores líderes de soluciones informáticas, mantenimiento preventivo de alto nivel y venta de consumibles tecnológicos de alto rendimiento.
+                </p>
+                <div class="flex space-x-4 pt-2">
+                    <a href="#" class="hover:text-gold-500 text-lg transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-gold-500 text-lg transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-gold-500 text-lg transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-gold-500 text-lg transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div>
+                <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-gold-500 pl-3">Soporte</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#servicios" class="hover:text-gold-500 transition-colors">Servicio Técnico</a></li>
+                    <li><a href="#productos" class="hover:text-gold-500 transition-colors">Catálogo de Productos</a></li>
+                    <li><a href="#beneficios" class="hover:text-gold-500 transition-colors">Ventajas Competitivas</a></li>
+                    <li><a href="#proceso" class="hover:text-gold-500 transition-colors">Fases de Trabajo</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact info -->
+            <div>
+                <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-gold-500 pl-3">Contacto</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-map-marker-alt text-gold-500 flex-shrink-0"></i>
+                        <span>Paseo de la Castellana 120, 28046 Madrid, España</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-phone-alt text-gold-500 flex-shrink-0"></i>
+                        <span>+34 900 100 200</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-envelope text-gold-500 flex-shrink-0"></i>
+                        <span>elite@soportec.es</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Hours & Certification -->
+            <div>
+                <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-gold-500 pl-3">Horario Comercial</h4>
+                <ul class="space-y-2 text-xs">
+                    <li class="flex justify-between">
+                        <span>Lunes a Viernes</span>
+                        <span class="text-gold-500 font-bold">9:00 - 19:00</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Sábados de Guardia</span>
+                        <span class="text-gold-500 font-bold">10:00 - 14:00</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Domingos</span>
+                        <span class="text-red-500">Cerrado</span>
+                    </li>
+                </ul>
+                <div class="mt-4 p-3 bg-white/5 rounded-lg border border-gold-500/10 flex items-center justify-between">
+                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Sello ISO 9001 Certificado</span>
+                    <i class="fas fa-award text-gold-500 text-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+            <p>&copy; 2026 SOPORTEC S.L. Todos los derechos reservados. Diseñado bajo estándares de alta conversión.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-gold-500">Aviso Legal</a>
+                <a href="#" class="hover:text-gold-500">Política de Privacidad</a>
+                <a href="#" class="hover:text-gold-500">Política de Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Request Express Quote / Diagnostico -->
+    <div id="quote-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-950/90 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+        <div class="glass-premium w-full max-w-lg rounded-2xl p-8 border border-gold-500/30 relative">
+            <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gold-500 text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="space-y-4 mb-6">
+                <div class="inline-flex items-center space-x-2 bg-gold-500/10 border border-gold-500/25 px-3 py-1 rounded-full">
+                    <i class="fas fa-calculator text-gold-500 text-xs"></i>
+                    <span class="text-[10px] text-gold-400 font-bold uppercase tracking-wider">Calculadora Exprés de Presupuestos</span>
+                </div>
+                <h3 class="text-2xl font-extrabold text-white">Solicitar Presupuesto Premium</h3>
+                <p class="text-xs text-gray-400">
+                    Introduce los detalles de tu problema y recibe de forma inmediata una estimación orientativa del coste técnico.
+                </p>
+            </div>
+
+            <form id="quote-calculator-form" class="space-y-4" onsubmit="handleQuoteSubmit(event)">
+                <!-- Service Type Selector -->
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Servicio Requerido</label>
+                    <select id="quote-service-select" class="w-full bg-dark-900 border border-white/10 rounded-lg py-2.5 px-3 text-xs text-white focus:border-gold-500 focus:outline-none" onchange="updateEstimatedCost()">
+                        <option value="0" disabled selected>Selecciona un servicio técnico...</option>
+                        <option value="60">Reparación de Hardware (Ordenador / Portátil) - Desde 60€</option>
+                        <option value="75">Reparación y Mantenimiento de Impresora - Desde 75€</option>
+                        <option value="120">Soporte Técnico Empresarial Especializado - Desde 120€</option>
+                        <option value="50">Optimización de Sistema & Virus - Desde 50€</option>
+                        <option value="90">Recuperación de Datos Perdidos - Desde 90€</option>
+                    </select>
+                </div>
+
+                <!-- Express Options -->
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="flex items-center space-x-3 bg-white/5 p-3 rounded-lg border border-white/5 cursor-pointer hover:border-gold-500/30 transition-colors">
+                        <input type="checkbox" id="express-speed" class="form-checkbox text-gold-500" onchange="updateEstimatedCost()">
+                        <div>
+                            <span class="block text-xs font-bold text-white">Prioridad Urgente</span>
+                            <span class="text-[9px] text-gray-500">+30€ (Soporte en &lt;2h)</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center space-x-3 bg-white/5 p-3 rounded-lg border border-white/5 cursor-pointer hover:border-gold-500/30 transition-colors">
+                        <input type="checkbox" id="express-home" class="form-checkbox text-gold-500" onchange="updateEstimatedCost()">
+                        <div>
+                            <span class="block text-xs font-bold text-white">A Domicilio / Oficina</span>
+                            <span class="text-[9px] text-gray-500">+25€ (Desplazamiento)</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Instant Estimate -->
+                <div class="bg-dark-900 p-4 rounded-xl border border-gold-500/20 flex justify-between items-center">
+                    <span class="text-xs text-gray-400 font-bold uppercase">Estimación Inicial:</span>
+                    <span id="estimated-price" class="text-2xl font-extrabold text-gold-500">0,00 €</span>
+                </div>
+
+                <!-- User Details -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Nombre completo" required class="w-full bg-dark-900 border border-white/10 rounded-lg py-2.5 px-3 text-xs text-white focus:border-gold-500 focus:outline-none">
+                    <input type="email" placeholder="Correo electrónico" required class="w-full bg-dark-900 border border-white/10 rounded-lg py-2.5 px-3 text-xs text-white focus:border-gold-500 focus:outline-none">
+                </div>
+                <input type="tel" placeholder="Teléfono de contacto" required class="w-full bg-dark-900 border border-white/10 rounded-lg py-2.5 px-3 text-xs text-white focus:border-gold-500 focus:outline-none">
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-dark-950 font-bold hover:brightness-110 shadow-lg shadow-gold-500/20 transition-all text-sm uppercase tracking-wider">
+                    Confirmar & Solicitar Llamada
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION SYSTEM: Simulated Premium Toast Notification -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 glass-premium p-4 rounded-xl border-gold-500/30 max-w-sm hidden shadow-2xl transition-all duration-300 transform translate-y-10 opacity-0 flex items-center space-x-4">
+        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 flex-shrink-0">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div>
+            <h4 id="toast-title" class="text-sm font-bold text-white">Éxito</h4>
+            <p id="toast-desc" class="text-xs text-gray-400">Solicitud procesada correctamente.</p>
+        </div>
+    </div>
+
+    <script>
+        // Global variables for Simulated E-commerce / Interactivity
+        let simulatedCart = [];
+        
+        // Mobile menu controller
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fas fa-times text-2xl';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fas fa-bars text-2xl';
+            }
+        }
+
+        // Product Catalog Category Filter
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = ['todos', 'impresoras', 'componentes', 'suministros'];
+            
+            // Highlight current button
+            buttons.forEach(btn => {
+                const element = document.getElementById(`filter-btn-${btn}`);
+                if (btn === category) {
+                    element.className = "px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-gold-500 text-dark-950 shadow-md";
+                } else {
+                    element.className = "px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-white/5 text-gray-400 hover:bg-gold-500 hover:text-dark-950";
+                }
+            });
+
+            // Toggle Visibility
+            cards.forEach(card => {
+                const itemCategory = card.getAttribute('data-category');
+                if (category === 'todos' || itemCategory === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Controls
+        function openQuoteModal() {
+            const modal = document.getElementById('quote-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeQuoteModal() {
+            const modal = document.getElementById('quote-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Auto Estimate Price Calculator
+        function updateEstimatedCost() {
+            const serviceSelect = document.getElementById('quote-service-select');
+            const expressCheck = document.getElementById('express-speed');
+            const homeCheck = document.getElementById('express-home');
+            const priceElement = document.getElementById('estimated-price');
+
+            let baseCost = parseFloat(serviceSelect.value) || 0;
+            if (baseCost > 0) {
+                if (expressCheck.checked) baseCost += 30;
+                if (homeCheck.checked) baseCost += 25;
+                priceElement.innerText = `${baseCost.toFixed(2)} €`;
+            } else {
+                priceElement.innerText = `0,00 €`;
+            }
+        }
+
+        // Handle Express Quote Submission
+        function handleQuoteSubmit(event) {
+            event.preventDefault();
+            closeQuoteModal();
+            showToast('¡Presupuesto Registrado!', 'Un técnico premium se pondrá en contacto contigo en breve para el diagnóstico.');
+            document.getElementById('quote-calculator-form').reset();
+            updateEstimatedCost();
+        }
+
+        // Action when customer requests a specific service from grid
+        function requestSpecificService(serviceName) {
+            openQuoteModal();
+            // Automatically select corresponding option in selector if matching keywords are found
+            const select = document.getElementById('quote-service-select');
+            if (serviceName.includes('Ordenadores')) select.value = "60";
+            else if (serviceName.includes('Impresoras')) select.value = "75";
+            else if (serviceName.includes('Empresas')) select.value = "120";
+            else if (serviceName.includes('Optimización')) select.value = "50";
+            else if (serviceName.includes('Datos')) select.value = "90";
+            updateEstimatedCost();
+        }
+
+        // Action when user clicks "Consultar / Request Info"
+        function requestInfo(productName) {
+            openQuoteModal();
+            const select = document.getElementById('quote-service-select');
+            select.value = "120"; // General business/corporate consult default
+            updateEstimatedCost();
+            showToast('Información de Producto', `Se ha pre-seleccionado una sesión informativa para: ${productName}`);
+        }
+
+        // Simulated Checkout Flow (Adds to simulated cart drawer & generates action)
+        function addToSimulatedCart(productName, price) {
+            simulatedCart.push({ name: productName, price: price });
+            showToast('Añadido al Carrito', `Has reservado: ${productName} por ${price.toFixed(2)} €.`);
+            
+            // Open a beautiful modal or custom checkout invitation via WhatsApp simulation
+            setTimeout(() => {
+                const message = encodeURIComponent(`Hola Soportec, estoy interesado en comprar el producto "${productName}" por un valor de ${price.toFixed(2)}€. ¿Tienen stock inmediato?`);
+                window.open(`https://wa.me/34900100200?text=${message}`, '_blank');
+            }, 1000);
+        }
+
+        // Custom Premium Toast Notification
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast-notification');
+            const tTitle = document.getElementById('toast-title');
+            const tDesc = document.getElementById('toast-desc');
+
+            tTitle.innerText = title;
+            tDesc.innerText = desc;
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-10');
+            }, 50);
+
+            // Close Toast after 4.5 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 4500);
+        }
+
+        // Elegant Dynamic Scroll effect on Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-dark-950/95', 'shadow-lg', 'shadow-black/20');
+            } else {
+                header.classList.remove('bg-dark-950/95', 'shadow-lg', 'shadow-black/20');
+            }
+        });
+    </script>
+</body>
+</html>

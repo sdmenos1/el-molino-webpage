@@ -66,6 +66,57 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const restaurantSchema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Cafetería El Molino",
+  "alternateName": ["El Molino Fuenlabrada", "El Molino"],
+  "url": "https://elmolinofuenlabrada.com",
+  "logo": "https://elmolinofuenlabrada.com/logo.png",
+  "image": "https://elmolinofuenlabrada.com/logo.png",
+  "telephone": "+34916073781",
+  "priceRange": "€",
+  "servesCuisine": ["Española", "Tapas", "Desayunos", "Menú del día"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle de Francia, 11",
+    "addressLocality": "Fuenlabrada",
+    "addressRegion": "Madrid",
+    "postalCode": "28943",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.2828,
+    "longitude": -3.7932
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "21:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/elmolinofuenla"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "El Molino",
+  "alternateName": "Cafetería El Molino Fuenlabrada",
+  "url": "https://elmolinofuenlabrada.com"
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -75,23 +126,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Disfruta de nuestros desayunos tradicionales, raciones y el menú del día casero. Prepara tu comanda online en Cafetería El Molino, Fuenlabrada.",
+          "Disfruta de la tortilla de patatas Nº1 de Fuenlabrada, desayunos desde las 07:00 AM, paella los miércoles y menú del día casero. Comanda por WhatsApp en El Molino.",
       },
       { name: "author", content: "Cafetería El Molino" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "theme-color", content: "#0A0908" },
+      { property: "og:site_name", content: "Cafetería El Molino" },
       { property: "og:title", content: "Cafetería El Molino · Desayunos, Tapas y Menú en Fuenlabrada" },
       {
         property: "og:description",
         content:
-          "La tortilla de patatas Nº1 de Fuenlabrada y los platos caseros tradicionales de siempre. Comanda por WhatsApp.",
+          "La tortilla de patatas Nº1 de Fuenlabrada y los platos caseros tradicionales de siempre. Comanda rápida por WhatsApp.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://elmolinofuenlabrada.com/logo.png" },
+      { property: "og:locale", content: "es_ES" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Cafetería El Molino · Desayunos, Tapas y Menú en Fuenlabrada" },
       { name: "twitter:description", content: "Prepara tu comanda de desayunos, tapas o menú del día y confírmala por WhatsApp." },
+      { name: "twitter:image", content: "https://elmolinofuenlabrada.com/logo.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/logo.png", type: "image/png" },
+      { rel: "icon", sizes: "32x32", href: "/logo.png", type: "image/png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "shortcut icon", href: "/logo.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -111,6 +172,14 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="es">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body>
         {children}

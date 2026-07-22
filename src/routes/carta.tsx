@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Beer, Star, AlertCircle } from "lucide-react";
-import raciones from "@/assets/raciones.jpg";
-import tapas from "@/assets/tapas.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g5 from "@/assets/gallery-5.jpg";
+import raciones from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.54.21.jpeg";
+import tapas from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.52 (1).jpeg";
+import g3 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.44.53 (3).jpeg";
+import g5 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.50 (6).jpeg";
 import { Reveal } from "@/components/Reveal";
 import { AddToCartButton } from "@/components/AddToCartButton";
 

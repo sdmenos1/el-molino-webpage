@@ -1,0 +1,354 @@
+import realVideo from "@/assets/nuevas-fotos/WhatsApp Video 2026-07-16 at 14.51.56.mp4";
+import realImg_1 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.43.42 (8).jpeg";
+import realImg_2 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.43.41 (1).jpeg";
+import realImg_3 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.43.43.jpeg";
+import realImg_4 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.55.44.jpeg";
+import realImg_5 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.55.51.jpeg";
+import realImg_6 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.50 (6).jpeg";
+import realImg_7 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.49 (5).jpeg";
+import realImg_8 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.52 (1).jpeg";
+import realImg_9 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.47 (3).jpeg";
+import realImg_10 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.51.jpeg";
+import realImg_11 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.56.28 (3).jpeg";
+import realImg_12 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.44.53 (3).jpeg";
+import realImg_13 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.48.31.jpeg";
+import realImg_14 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.49.21 (2).jpeg";
+import realImg_15 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.49.42 (2).jpeg";
+import realImg_16 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.49.52 (1).jpeg";
+import realImg_17 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.53.55 (1).jpeg";
+import realImg_18 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.57.17.jpeg";
+import realImg_19 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.57.23.jpeg";
+import realImg_20 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.46.34.jpeg";
+import realImg_21 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.48 (1).jpeg";
+import realImg_22 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.54.21.jpeg";
+import realImg_23 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.11 (4).jpeg";
+import realImg_24 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.12 (7).jpeg";
+import realImg_25 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.13 (2).jpeg";
+import realImg_26 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.14 (6).jpeg";
+import realImg_27 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.15 (8).jpeg";
+import realImg_28 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.16 (3).jpeg";
+import realImg_29 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.17.jpeg";
+import realImg_30 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.18 (2).jpeg";
+import realImg_31 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.48.51.jpeg";
+import realImg_32 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.55.28.jpeg";
+import realImg_33 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.40.35.jpeg";
+import realImg_34 from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.52.00.jpeg";
+
+
+const mediaItems: MediaItem[] = [
+  {
+    id: "vid-1",
+    title: "Ambiente y Sabor en El Molino",
+    description: "Vídeo en directo de nuestra cocina y servicio en el local.",
+    type: "video",
+    category: "servicios",
+    src: realVideo,
+    aspectRatio: "aspect-[9/16]",
+  },
+  {
+    id: "img-2",
+    title: "Fachada El Molino",
+    description: "Nuestra entrada clásica, fundada en 1967 en Fuenlabrada.",
+    type: "image",
+    category: "local",
+    src: realImg_1,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-3",
+    title: "Pescado Fresco a la Plancha",
+    description: "Lomos de pescado del día cocinados al punto con ajo, perejil y limón.",
+    type: "image",
+    category: "resultados",
+    src: realImg_2,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-4",
+    title: "Nuestro Equipo de Cocina",
+    description: "Preparando cada plato con el cariño de la cocina casera.",
+    type: "image",
+    category: "equipo",
+    src: realImg_3,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-5",
+    title: "Catering y Celebraciones",
+    description: "Salón preparado para cumpleaños y eventos privados.",
+    type: "image",
+    category: "eventos",
+    src: realImg_4,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-6",
+    title: "Café Bombon Especial",
+    description: "Capas de café, leche condensada y chocolate Toblerone.",
+    type: "image",
+    category: "servicios",
+    src: realImg_5,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-7",
+    title: "Nuestra Famosa Tortilla",
+    description: "Jugosa, dorada por fuera y hecha a diario.",
+    type: "image",
+    category: "resultados",
+    src: realImg_6,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-8",
+    title: "Salón y Comedor",
+    description: "Mesas acogedoras perfectas para comer nuestro menú casero.",
+    type: "image",
+    category: "local",
+    src: realImg_7,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-9",
+    title: "Tardes de Tapas",
+    description: "Clientes compartiendo raciones y buenos momentos en El Molino.",
+    type: "image",
+    category: "clientes",
+    src: realImg_8,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-10",
+    title: "El Salón de El Molino",
+    description: "Interior rústico y acogedor con la barra de madera tradicional.",
+    type: "image",
+    category: "local",
+    src: realImg_9,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-11",
+    title: "Noche de Eventos",
+    description: "Copas preparadas y buen ambiente para tus celebraciones.",
+    type: "image",
+    category: "eventos",
+    src: realImg_10,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-12",
+    title: "Desayuno Tradicional",
+    description: "Zumo natural, tostada con tomate y café arábica.",
+    type: "image",
+    category: "servicios",
+    src: realImg_11,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-13",
+    title: "Burrata y Tomate",
+    description: "Plato fresco y gourmet elaborado con ingredientes de temporada.",
+    type: "image",
+    category: "resultados",
+    src: realImg_12,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-14",
+    title: "Miércoles de Paella",
+    description: "Platos listos de nuestra paella marinera recién hecha.",
+    type: "image",
+    category: "resultados",
+    src: realImg_13,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-15",
+    title: "Ambiente Familiar",
+    description: "El rincón del barrio donde todos se sienten en casa.",
+    type: "image",
+    category: "clientes",
+    src: realImg_14,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-16",
+    title: "Servicio de Sala",
+    description: "Siempre atentos para ofrecerte la mejor atención.",
+    type: "image",
+    category: "equipo",
+    src: realImg_15,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-17",
+    title: "Catering y Celebraciones",
+    description: "Salón preparado para cumpleaños y eventos privados.",
+    type: "image",
+    category: "eventos",
+    src: realImg_16,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-18",
+    title: "Porras Artesanas",
+    description: "Hechas en nuestro obrador cada mañana.",
+    type: "image",
+    category: "servicios",
+    src: realImg_17,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-19",
+    title: "Lomos a la Plancha",
+    description: "Pescado fresco del día con ajito y perejil.",
+    type: "image",
+    category: "resultados",
+    src: realImg_18,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-20",
+    title: "Detalles del Local",
+    description: "Decoración tradicional en piedra y madera.",
+    type: "image",
+    category: "local",
+    src: realImg_19,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-21",
+    title: "Momentos Especiales",
+    description: "Risas y cañas compartidas entre amigos.",
+    type: "image",
+    category: "clientes",
+    src: realImg_20,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-22",
+    title: "Nuestro Equipo de Cocina",
+    description: "Preparando cada plato con el cariño de la cocina casera.",
+    type: "image",
+    category: "equipo",
+    src: realImg_21,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-23",
+    title: "Nido de Patata y Huevo Poché",
+    description: "Patatas paja crujientes con huevo poché, chives y salsa gourmet.",
+    type: "image",
+    category: "resultados",
+    src: realImg_22,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-24",
+    title: "Caña Bien Tirada",
+    description: "Cerveza fresquísima servida con la presión perfecta.",
+    type: "image",
+    category: "servicios",
+    src: realImg_23,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-25",
+    title: "Nido de Huevo Poché",
+    description: "Crujiente de patata paja con huevo poché y salsa de hierbas.",
+    type: "image",
+    category: "resultados",
+    src: realImg_24,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-26",
+    title: "Nuestra Barra",
+    description: "Donde servimos el primer café de la mañana desde las 07:00.",
+    type: "image",
+    category: "local",
+    src: realImg_25,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-27",
+    title: "Tardes de Tapas",
+    description: "Clientes compartiendo raciones y buenos momentos en El Molino.",
+    type: "image",
+    category: "clientes",
+    src: realImg_26,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-28",
+    title: "Servicio de Sala",
+    description: "Siempre atentos para ofrecerte la mejor atención.",
+    type: "image",
+    category: "equipo",
+    src: realImg_27,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-29",
+    title: "Noche de Eventos",
+    description: "Copas preparadas y buen ambiente para tus celebraciones.",
+    type: "image",
+    category: "eventos",
+    src: realImg_28,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-30",
+    title: "Fachada El Molino",
+    description: "Nuestra fachada clásica, fundada en 1967 en Fuenlabrada.",
+    type: "image",
+    category: "local",
+    src: realImg_29,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-31",
+    title: "Pincho de Brie y Jamón",
+    description: "Queso brie fundido y jamón serrano con reducción balsámica.",
+    type: "image",
+    category: "resultados",
+    src: realImg_30,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-32",
+    title: "Terraza Exterior",
+    description: "Disfruta de tus raciones al aire libre en nuestra terraza.",
+    type: "image",
+    category: "local",
+    src: realImg_31,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-33",
+    title: "Tapa de Brie y Jamón Serrano",
+    description: "Queso brie fundido y melocotón asado con reducción balsámica.",
+    type: "image",
+    category: "resultados",
+    src: realImg_32,
+    aspectRatio: "aspect-[3/4]",
+  },
+  {
+    id: "img-34",
+    title: "Nuestro Equipo de Cocina",
+    description: "Preparando cada plato con el cariño de la cocina casera.",
+    type: "image",
+    category: "equipo",
+    src: realImg_33,
+    aspectRatio: "aspect-[4/3]",
+  },
+  {
+    id: "img-35",
+    title: "Catering y Celebraciones",
+    description: "Salón preparado para cumpleaños y eventos privados.",
+    type: "image",
+    category: "eventos",
+    src: realImg_34,
+    aspectRatio: "aspect-[4/3]",
+  },
+];

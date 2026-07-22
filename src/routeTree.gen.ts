@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as DesayunosRouteImport } from './routes/desayunos'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as CartaRouteImport } from './routes/carta'
@@ -25,6 +26,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesayunosRoute = DesayunosRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/carta': typeof CartaRoute
   '/contacto': typeof ContactoRoute
   '/desayunos': typeof DesayunosRoute
+  '/galeria': typeof GaleriaRoute
   '/menu': typeof MenuRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard/admin': typeof DashboardAdminRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/carta': typeof CartaRoute
   '/contacto': typeof ContactoRoute
   '/desayunos': typeof DesayunosRoute
+  '/galeria': typeof GaleriaRoute
   '/menu': typeof MenuRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard/admin': typeof DashboardAdminRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/carta': typeof CartaRoute
   '/contacto': typeof ContactoRoute
   '/desayunos': typeof DesayunosRoute
+  '/galeria': typeof GaleriaRoute
   '/menu': typeof MenuRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard/admin': typeof DashboardAdminRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/carta'
     | '/contacto'
     | '/desayunos'
+    | '/galeria'
     | '/menu'
     | '/sitemap.xml'
     | '/dashboard/admin'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/carta'
     | '/contacto'
     | '/desayunos'
+    | '/galeria'
     | '/menu'
     | '/sitemap.xml'
     | '/dashboard/admin'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/carta'
     | '/contacto'
     | '/desayunos'
+    | '/galeria'
     | '/menu'
     | '/sitemap.xml'
     | '/dashboard/admin'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   CartaRoute: typeof CartaRoute
   ContactoRoute: typeof ContactoRoute
   DesayunosRoute: typeof DesayunosRoute
+  GaleriaRoute: typeof GaleriaRoute
   MenuRoute: typeof MenuRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   DashboardAdminRoute: typeof DashboardAdminRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/menu'
       fullPath: '/menu'
       preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/desayunos': {
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartaRoute: CartaRoute,
   ContactoRoute: ContactoRoute,
   DesayunosRoute: DesayunosRoute,
+  GaleriaRoute: GaleriaRoute,
   MenuRoute: MenuRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   DashboardAdminRoute: DashboardAdminRoute,

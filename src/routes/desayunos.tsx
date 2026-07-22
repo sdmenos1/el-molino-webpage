@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Coffee, Info, Star } from "lucide-react";
-import churros from "@/assets/churros.jpg";
-import breakfastReal from "@/assets/menu-dia.jpg";
-import tortillaReal from "@/assets/tapas.jpg";
+import churros from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.53.55 (1).jpeg";
+import breakfastReal from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.56.28 (3).jpeg";
+import tortillaReal from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.50 (6).jpeg";
 import { Reveal } from "@/components/Reveal";
 import { AddToCartButton } from "@/components/AddToCartButton";
 
@@ -62,7 +62,7 @@ function Desayunos() {
       </section>
 
       {/* CATÁLOGO DE TARJETAS */}
-      <section className="pb-24">
+      <section className="pb-16">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="flex items-end justify-between mb-10">
             <h2 className="font-serif text-3xl sm:text-4xl">Carta de Desayunos</h2>
@@ -73,30 +73,30 @@ function Desayunos() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {items.map((it, i) => (
               <Reveal key={it.id} delay={i * 0.04}>
-                <article className="group flex flex-col h-full overflow-hidden rounded-2xl border border-border/60 bg-carbon-2/80 hover:border-gold/40 hover:-translate-y-1.5 transition-all duration-400 hover:shadow-gold">
-                  {/* Contenedor de Imagen Superior */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-carbon shrink-0">
+                <article className="card-dark overflow-hidden group border border-border/60 hover:border-gold/50 transition-all duration-300 flex flex-col h-full">
+                  <div className="relative h-56 overflow-hidden">
                     <img
                       src={it.img}
                       alt={it.name}
                       loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     {it.popular && (
-                      <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-gold/90 backdrop-blur px-2.5 py-1 text-[0.6rem] uppercase tracking-wider font-semibold text-carbon">
-                        <Star size={10} fill="currentColor" strokeWidth={0} /> Popular
+                      <span className="absolute top-4 left-4 bg-gold text-carbon text-[0.65rem] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                        Popular
                       </span>
                     )}
-                    <div className="absolute bottom-3 right-3 rounded-lg bg-carbon/80 backdrop-blur px-2.5 py-1 text-sm font-semibold text-gold border border-gold/30">
-                      {it.price.toFixed(2).replace(".", ",")} €
-                    </div>
                   </div>
-                  
-                  {/* Cuerpo de la Tarjeta */}
-                  <div className="flex flex-col flex-1 p-5 sm:p-6 bg-carbon-2">
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-cream tracking-tight group-hover:text-gold transition-colors">{it.name}</h3>
-                    <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed flex-1">{it.desc}</p>
-                    
+                  <div className="p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <div className="flex items-baseline justify-between gap-2">
+                        <h3 className="font-serif text-xl group-hover:text-gold transition-colors">{it.name}</h3>
+                        <span className="font-serif text-xl gold-text font-bold shrink-0">
+                          {it.price.toFixed(2).replace(".", ",")} €
+                        </span>
+                      </div>
+                    </div>
+
                     {/* Botón de Añadir */}
                     <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border/40">
                       <AddToCartButton
@@ -110,19 +110,6 @@ function Desayunos() {
               </Reveal>
             ))}
           </div>
-
-          <Reveal delay={0.2}>
-            <div className="mt-14 rounded-2xl border border-gold/25 bg-gold/5 p-6 sm:p-8 flex flex-col sm:flex-row gap-5 items-start">
-              <Info className="text-gold shrink-0 mt-1" size={22} />
-              <div>
-                <h3 className="font-serif text-xl">¿Prefieres pedir para llevar (Takeaway)?</h3>
-                <p className="mt-2 text-sm text-cream/70 leading-relaxed">
-                  Añade tus desayunos y bebidas favoritos al carrito digital y envíanos tu comanda por WhatsApp. 
-                  Te la prepararemos para que la recojas bien caliente y sin colas.
-                </p>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
     </>

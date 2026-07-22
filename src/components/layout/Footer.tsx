@@ -4,23 +4,24 @@ import logo from "@/assets/logo.png";
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 border-t border-[color-mix(in_oklab,var(--gold)_18%,transparent)] bg-carbon-2/60">
-      {/* Cómo funciona strip */}
-      <div className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-6 py-10 grid gap-6 sm:grid-cols-3">
+    <footer className="relative mt-0 border-t border-[color-mix(in_oklab,var(--gold)_18%,transparent)] bg-carbon-2/60">
+      {/* Cómo funciona strip - Minimalist Architecture */}
+      <div className="border-b border-white/5 bg-carbon-2/40 select-none">
+        <div className="mx-auto max-w-7xl px-6 py-12 grid gap-6 sm:grid-cols-3">
           {[
-            { n: "01", Icon: ShoppingBag, t: "Explora la carta", d: "Añade raciones, menús o desayunos a tu comanda." },
-            { n: "02", Icon: Store, t: "Elige modalidad", d: "Recoger en local o reservar mesa con tu pedido en marcha." },
-            { n: "03", Icon: MessageCircle, t: "Envía por WhatsApp", d: "Te confirmamos disponibilidad en menos de 1 minuto." },
+            { n: "01", Icon: ShoppingBag, t: "Explora la carta", d: "Añade raciones, menús o desayunos a tu comanda en la web." },
+            { n: "02", Icon: Store, t: "Elige modalidad", d: "Para tomar en local con mesa reservada o recoger recién hecho (Takeaway)." },
+            { n: "03", Icon: MessageCircle, t: "Envía por WhatsApp", d: "Te confirmamos disponibilidad y tiempo estimado al momento." },
           ].map(({ n, Icon, t, d }) => (
-            <div key={n} className="flex gap-4">
-              <div className="font-serif text-3xl gold-text shrink-0">{n}</div>
-              <div>
-                <div className="flex items-center gap-2 font-serif text-lg">
-                  <Icon size={16} className="text-gold" /> {t}
-                </div>
-                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{d}</p>
+            <div key={n} className="group flex flex-col p-6 rounded-2xl border border-white/5 bg-carbon/50 hover:border-gold/30 transition-all duration-300">
+              <div className="flex justify-between items-center mb-4">
+                <span className="font-serif text-3xl gold-text font-normal opacity-80 group-hover:opacity-100 transition-opacity">{n}</span>
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-gold/10 text-gold border border-gold/20">
+                  <Icon size={14} />
+                </span>
               </div>
+              <h4 className="font-serif text-lg font-normal text-cream group-hover:text-gold transition-colors">{t}</h4>
+              <p className="mt-2 text-xs text-cream/65 leading-relaxed">{d}</p>
             </div>
           ))}
         </div>
@@ -68,6 +69,7 @@ export function Footer() {
             <li><Link to="/desayunos" className="text-muted-foreground hover:text-gold transition-colors">Desayunos Tradicionales</Link></li>
             <li><Link to="/menu" className="text-muted-foreground hover:text-gold transition-colors">Menú del Día</Link></li>
             <li><Link to="/carta" className="text-muted-foreground hover:text-gold transition-colors">Carta de Raciones</Link></li>
+            <li><Link to="/galeria" className="text-muted-foreground hover:text-gold transition-colors">Galería Multimedia</Link></li>
             <li><Link to="/contacto" className="text-muted-foreground hover:text-gold transition-colors">Contacto & Ubicación</Link></li>
           </ul>
         </div>

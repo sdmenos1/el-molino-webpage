@@ -1,0 +1,21 @@
+{
+  "name": "Cafetería El Molino Fuenlabrada",
+  "short_name": "El Molino",
+  "description": "Desayunos, Tapas Tradicionales y Menú del Día en Fuenlabrada. La Tortilla de Patatas Nº1.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0908",
+  "theme_color": "#C05C3E",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

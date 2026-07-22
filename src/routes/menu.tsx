@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Utensils, HelpCircle, ShoppingBag, Info, Check, Plus, Trash2, Settings } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
-import menuDia from "@/assets/menu-dia.jpg";
+import menuDia from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.48.31.jpeg";
 import { Reveal } from "@/components/Reveal";
 import { useCart } from "@/lib/cart";
 
@@ -500,21 +500,25 @@ function MenuDia() {
         </div>
       </section>
 
-      {/* FAQS */}
-      <section className="py-24 max-w-4xl mx-auto px-6">
-        <Reveal className="text-center mb-16">
-          <div className="eyebrow justify-center">Preguntas Frecuentes</div>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl">Detalles del Menú del Día</h2>
+      {/* FAQS MINIMALISTAS & ELEGANTES */}
+      <section className="py-16 max-w-3xl mx-auto px-6 border-t border-white/5 select-none">
+        <Reveal className="text-center mb-14">
+          <div className="eyebrow justify-center tracking-[0.25em] text-gold text-xs uppercase font-semibold mb-3">
+            Información Útil
+          </div>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-white">
+            Detalles del <span className="italic gold-text font-light">Menú del Día</span>
+          </h2>
         </Reveal>
 
-        <div className="grid gap-6">
+        <div className="divide-y divide-white/10">
           {faqs.map((faq, i) => (
-            <Reveal key={i} delay={i * 0.05} className="card-dark p-6">
-              <h3 className="font-serif text-lg flex items-start gap-3">
-                <HelpCircle size={18} className="text-gold shrink-0 mt-1" />
-                {faq.q}
+            <Reveal key={i} delay={i * 0.05} className="py-7 group">
+              <h3 className="font-serif text-xl font-normal text-cream group-hover:text-gold transition-colors duration-300 flex justify-between items-center gap-4">
+                <span>{faq.q}</span>
+                <span className="text-gold/50 group-hover:text-gold text-xs font-mono tracking-widest">0{i + 1}</span>
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground pl-7 leading-relaxed">{faq.a}</p>
+              <p className="mt-3 text-sm text-cream/70 leading-relaxed max-w-2xl">{faq.a}</p>
             </Reveal>
           ))}
         </div>

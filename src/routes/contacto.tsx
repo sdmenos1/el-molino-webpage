@@ -50,17 +50,23 @@ function Contact() {
         </div>
       </section>
 
-      {/* INFO */}
-      <section className="pb-12">
+      {/* INFO CARDS - Minimalist Architecture */}
+      <section className="pb-16 select-none">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-3">
             {info.map((it, i) => (
               <Reveal key={it.label} delay={i * 0.05}>
-                <div className="card-dark p-6 h-full">
-                  <it.icon className="text-gold" size={22} strokeWidth={1.5} />
-                  <div className="mt-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">{it.label}</div>
-                  <div className="mt-2 font-serif text-xl">{it.value}</div>
-                  <div className="mt-2 text-xs text-muted-foreground">{it.sub}</div>
+                <div className="group flex flex-col justify-between p-7 rounded-2xl border border-white/5 bg-carbon-2/60 h-full hover:border-gold/30 transition-all duration-300">
+                  <div className="flex justify-between items-start mb-6">
+                    <span className="text-[0.65rem] uppercase tracking-[0.25em] font-semibold text-gold">{it.label}</span>
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-gold/10 text-gold border border-gold/20">
+                      <it.icon size={14} />
+                    </span>
+                  </div>
+                  <div>
+                    <div className="font-serif text-2xl text-cream font-normal group-hover:text-gold transition-colors">{it.value}</div>
+                    <div className="mt-2 text-xs text-cream/65 leading-relaxed">{it.sub}</div>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -69,14 +75,14 @@ function Contact() {
       </section>
 
       {/* MAPA + HORARIOS */}
-      <section className="py-12">
+      <section className="py-12 select-none">
         <div className="mx-auto max-w-7xl px-6 grid gap-8 lg:grid-cols-2">
           <Reveal>
-            <div className="overflow-hidden rounded-2xl border border-border/60 h-full min-h-[440px]">
+            <div className="overflow-hidden rounded-2xl border border-white/5 h-full min-h-[460px] bg-carbon-2">
               <iframe
                 title="Ubicación Cafetería El Molino Fuenlabrada"
                 src="https://www.google.com/maps?q=Calle%20Francia,%2011,%20Fuenlabrada,%20Madrid&output=embed"
-                className="h-full w-full min-h-[440px]"
+                className="h-full w-full min-h-[460px]"
                 style={{ filter: "invert(0.9) hue-rotate(180deg) saturate(0.6) brightness(0.95)" }}
                 loading="lazy"
               />
@@ -84,56 +90,61 @@ function Contact() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="card-dark p-8 h-full">
-              <div className="eyebrow">Horarios</div>
-              <h2 className="mt-4 font-serif text-3xl">Horario del local</h2>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Te esperamos para desayunar, comer nuestro menú del día o compartir unas raciones por la tarde.
-              </p>
+            <div className="p-8 rounded-2xl border border-white/5 bg-carbon-2/60 h-full flex flex-col justify-between">
+              <div>
+                <div className="eyebrow tracking-[0.25em] text-gold text-xs uppercase font-semibold mb-3">Horarios</div>
+                <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal">Horario del local</h2>
+                <p className="mt-3 text-sm text-cream/70 leading-relaxed">
+                  Te esperamos para desayunar desde las 07:00 AM, comer nuestro menú del día casero o compartir unas raciones por la tarde.
+                </p>
 
-              <div className="mt-8 space-y-6">
-                {horarios.map(({ Icon, title, hours }) => (
-                  <div key={title} className="border-t border-border/50 pt-6 first:border-0 first:pt-0">
-                    <div className="flex items-center gap-3">
-                      <Icon className="text-gold" size={20} strokeWidth={1.4} />
-                      <h3 className="font-serif text-lg">{title}</h3>
+                <div className="mt-8 space-y-6">
+                  {horarios.map(({ Icon, title, hours }) => (
+                    <div key={title} className="border-t border-white/10 pt-6 first:border-0 first:pt-0">
+                      <div className="flex items-center gap-3">
+                        <Icon className="text-gold" size={18} strokeWidth={1.5} />
+                        <h3 className="font-serif text-lg text-cream font-normal">{title}</h3>
+                      </div>
+                      <dl className="mt-4 space-y-2 text-sm">
+                        {hours.map((h) => (
+                          <div key={h.d} className="flex justify-between border-b border-white/5 py-2">
+                            <dt className="text-cream/70 text-xs">{h.d}</dt>
+                            <dd className="text-cream font-medium text-xs">{h.h}</dd>
+                          </div>
+                        ))}
+                      </dl>
                     </div>
-                    <dl className="mt-4 space-y-1.5 text-sm">
-                      {hours.map((h) => (
-                        <div key={h.d} className="flex justify-between border-b border-border/30 py-1.5">
-                          <dt className="text-muted-foreground">{h.d}</dt>
-                          <dd className="text-cream font-medium">{h.h}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      {/* CTA TELEFÓNICO MINIMALISTA */}
+      <section className="py-16 border-t border-white/5 select-none">
+        <div className="mx-auto max-w-3xl px-6 text-center">
           <Reveal>
-            <Clock className="mx-auto text-gold" size={28} strokeWidth={1.4} />
-            <h2 className="mt-6 font-serif text-3xl sm:text-4xl">¿Prefieres llamarnos?</h2>
-            <p className="mt-4 text-muted-foreground">
-              Puedes llamarnos directamente a nuestro teléfono fijo o móvil, o enviarnos un WhatsApp.
+            <div className="eyebrow justify-center tracking-[0.25em] text-gold text-xs uppercase font-semibold mb-4">
+              Atención Directa
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white">¿Prefieres llamarnos?</h2>
+            <p className="mt-4 text-cream/70 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+              Atendemos tus dudas, encargos o pedidos especiales directamente por teléfono o WhatsApp.
             </p>
-            <div className="mt-8 flex flex-col items-center gap-2">
-              <a href="tel:+34916073781" className="font-serif text-3xl sm:text-4xl gold-text hover:opacity-80 transition-opacity">
+            <div className="mt-8 flex flex-wrap justify-center items-center gap-6">
+              <a href="tel:+34916073781" className="font-serif text-2xl sm:text-3xl text-gold hover:text-gold-soft transition-colors">
                 91 607 37 81
               </a>
-              <a href="tel:+34611729769" className="font-serif text-3xl sm:text-4xl gold-text hover:opacity-80 transition-opacity">
+              <span className="text-white/20 hidden sm:inline">•</span>
+              <a href="tel:+34611729769" className="font-serif text-2xl sm:text-3xl text-gold hover:text-gold-soft transition-colors">
                 611 72 97 69
               </a>
             </div>
-            <div className="mt-8">
-              <a href="https://wa.me/34611729769" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
-                <MessageCircle size={18} /> Escríbenos por WhatsApp
+            <div className="mt-10">
+              <a href="https://wa.me/34611729769" target="_blank" rel="noopener noreferrer" className="btn-gold">
+                <MessageCircle size={16} /> Escríbenos por WhatsApp
               </a>
             </div>
           </Reveal>
