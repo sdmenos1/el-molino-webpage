@@ -1,8 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Coffee, Info, Star } from "lucide-react";
-import churros from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.53.55 (1).jpeg";
-import breakfastReal from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.56.28 (3).jpeg";
-import tortillaReal from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.50 (6).jpeg";
+import imgAmericano from "@/assets/desayunos/wp_media_6_americano.jpeg";
+import imgOmelette from "@/assets/desayunos/wp_media_45_desayuno.jpg";
+import imgFuerte from "@/assets/desayunos/wp_media_7_fuerte.jpeg";
+import imgTostadaTomate from "@/assets/desayunos/wp_media_10_tostada_y_tomate.jpeg";
+import imgTostadaJamon from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.41.48 (3).jpeg";
+import imgCroissant from "@/assets/desayunos/wp_media_72_croisant-y-cafe.png";
+import imgBolleria from "@/assets/desayunos/wp_media_28_cafe-el-molino.jpeg";
+import imgChurros from "@/assets/nuevas-fotos/WhatsApp Image 2026-07-16 at 14.53.55 (1).jpeg";
+import imgCafe from "@/assets/desayunos/wp_media_43_cafe-el-molino.jpg";
 import { Reveal } from "@/components/Reveal";
 import { AddToCartButton } from "@/components/AddToCartButton";
 
@@ -10,7 +16,7 @@ export const Route = createFileRoute("/desayunos")({
   head: () => ({
     meta: [
       { title: "Desayunos · Cafetería El Molino en Fuenlabrada" },
-      { name: "description", content: "Empieza el día con nuestros desayunos tradicionales: tostadas con jamón, café recién hecho y churros crujientes. Desde las 07:00 todos los días." },
+      { name: "description", content: "Empieza el día con nuestros desayunos tradicionales: tostadas con jamón, café recién hecho, churros y desayuno americano. Desde las 07:00 todos los días." },
       { property: "og:title", content: "Desayunos · Cafetería El Molino" },
       { property: "og:description", content: "Desayunos tradicionales y completos desde las 07:00 en Fuenlabrada." },
     ],
@@ -19,17 +25,93 @@ export const Route = createFileRoute("/desayunos")({
 });
 
 const items = [
-  { id: "des-americano", name: "Desayuno Americano", desc: "Huevo frito, beicon ahumado y crujientes patatas fritas.", price: 5.50, img: breakfastReal },
-  { id: "des-omelette", name: "Desayuno Omelette", desc: "Sabrosa tortilla de huevo, jamón york, lechuga fresca y tomate natural.", price: 6.00, img: breakfastReal },
-  { id: "des-fuerte", name: "Desayuno Fuerte", desc: "Dos huevos fritos, delicioso cruasán a la plancha, acompañado de café caliente o zumo natural.", price: 7.00, img: breakfastReal, popular: true },
-  { id: "des-tost-tomate", name: "Tostada clásica con tomate", desc: "Pan de pueblo recién tostado con tomate rallado natural y aceite de oliva virgen extra.", price: 3.00, img: breakfastReal },
-  { id: "des-tost-jamon", name: "Tostada premium con jamón", desc: "Pan de pueblo tostado, tomate natural rallado y jamón ibérico curado con AOVE.", price: 5.00, img: tortillaReal, popular: true },
-  { id: "des-croissant", name: "Café con Croissant", desc: "Croissant horneado y café de especialidad recién molido.", price: 3.00, img: breakfastReal },
-  { id: "des-bolleria", name: "Café con Bollería", desc: "Pieza de bollería artesanal a elegir con café caliente.", price: 3.00, img: breakfastReal },
-  { id: "des-churros-6", name: "Ración de churros (6 uds)", desc: "Churros tradicionales fritos al momento en aceite limpio, crujientes por fuera.", price: 3.50, img: churros },
-  { id: "des-porras-3", name: "Ración de porras (3 uds)", desc: "Porras esponjosas y doradas preparadas artesanalmente cada mañana.", price: 3.90, img: churros, popular: true },
-  { id: "des-chocolate", name: "Chocolate a la taza", desc: "Chocolate denso y aromático elaborado a fuego lento, ideal para mojar.", price: 2.80, img: churros },
-  { id: "des-cafe", name: "Café de especialidad", desc: "Café en grano molido al momento (solo, cortado o con leche).", price: 1.60, img: breakfastReal },
+  {
+    id: "des-americano",
+    name: "Americano (Beicon, patata y huevo frito)",
+    desc: "Beicon crujiente, patatas fritas y huevo frito.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 5.50,
+    img: imgAmericano,
+  },
+  {
+    id: "des-omelette",
+    name: "Omelette (Tortilla de huevo, jamón york, lechuga y tomate)",
+    desc: "Tortilla de huevo con jamón york, lechuga y tomate natural.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 6.00,
+    img: imgOmelette,
+  },
+  {
+    id: "des-fuerte",
+    name: "Fuerte (2 Huevos fritos, cruasán plancha, café o zumo natural)",
+    desc: "2 Huevos fritos, cruasán a la plancha recién hecho, café o zumo natural.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 7.00,
+    img: imgFuerte,
+    popular: true,
+  },
+  {
+    id: "des-tost-tomate",
+    name: "Tostada y tomate",
+    desc: "Tostada artesana con tomate rallado natural y aceite de oliva virgen extra. Extra 0.30 €.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 3.00,
+    img: imgTostadaTomate,
+  },
+  {
+    id: "des-tost-jamon",
+    name: "Tostada con jamón",
+    desc: "Tostada artesana con tomate rallado natural y jamón ibérico curado.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 5.00,
+    img: imgTostadaJamon,
+    popular: true,
+  },
+  {
+    id: "des-croissant",
+    name: "Croissant y café",
+    desc: "Croissant artesano mantecoso acompañado de café caliente recién molido.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 3.00,
+    img: imgCroissant,
+  },
+  {
+    id: "des-bolleria",
+    name: "Bollería y café",
+    desc: "Pieza de bollería artesana recién horneada acompañada de café recién molido.",
+    allergens: "Gluten, sulfitos, leche",
+    price: 3.00,
+    img: imgBolleria,
+  },
+  {
+    id: "des-churros-6",
+    name: "Ración de churros (6 uds)",
+    desc: "Churros tradicionales fritos al momento en aceite limpio, crujientes por fuera.",
+    price: 3.50,
+    img: imgChurros,
+  },
+  {
+    id: "des-porras-3",
+    name: "Ración de porras (3 uds)",
+    desc: "Porras esponjosas y doradas preparadas artesanalmente cada mañana.",
+    price: 3.90,
+    img: imgChurros,
+    popular: true,
+  },
+  {
+    id: "des-chocolate",
+    name: "Chocolate a la taza",
+    desc: "Chocolate denso y aromático elaborado a fuego lento, ideal para mojar.",
+    price: 2.80,
+    img: imgChurros,
+  },
+  {
+    id: "des-cafe",
+    name: "Café de especialidad",
+    desc: "Café en grano molido al momento (solo, cortado o con leche).",
+    price: 1.60,
+    img: imgCafe,
+  },
 ];
 
 function Desayunos() {
@@ -37,7 +119,7 @@ function Desayunos() {
     <>
       {/* HERO */}
       <section className="relative pt-40 pb-24 overflow-hidden">
-        <img src={churros} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
+        <img src={imgChurros} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
         <div className="absolute inset-0 bg-gradient-to-b from-carbon/70 via-carbon/85 to-background" />
         <div className="relative mx-auto max-w-6xl px-6 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
@@ -46,7 +128,7 @@ function Desayunos() {
               Empieza el día <span className="italic gold-text">desde las 07:00</span>
             </h1>
             <p className="mt-6 text-lg text-cream/70 leading-relaxed">
-              Café recién molido, tostadas con jamón ibérico de primera y crujientes porras artesanales.
+              Café recién molido, tostadas con jamón ibérico de primera, desayuno americano y crujientes porras artesanales.
               Desayunos tradicionales con el sabor y cariño de siempre en Fuenlabrada.
             </p>
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-2 text-sm text-gold">
@@ -54,8 +136,8 @@ function Desayunos() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="overflow-hidden rounded-2xl">
-              <img src={churros} alt="Desayunos en Cafetería El Molino" loading="lazy" className="h-[520px] w-full object-cover" />
+            <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+              <img src={imgAmericano} alt="Desayuno Americano en Cafetería El Molino" loading="lazy" className="h-[520px] w-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -89,12 +171,18 @@ function Desayunos() {
                   </div>
                   <div className="p-6 flex flex-col flex-1 justify-between">
                     <div>
-                      <div className="flex items-baseline justify-between gap-2">
+                      <div className="flex items-baseline justify-between gap-2 mb-2">
                         <h3 className="font-serif text-xl group-hover:text-gold transition-colors">{it.name}</h3>
                         <span className="font-serif text-xl gold-text font-bold shrink-0">
                           {it.price.toFixed(2).replace(".", ",")} €
                         </span>
                       </div>
+                      <p className="text-xs sm:text-sm text-cream/70 leading-relaxed mb-3">{it.desc}</p>
+                      {it.allergens && (
+                        <span className="inline-block text-[0.7rem] text-muted-foreground/70 bg-white/5 border border-white/5 px-2.5 py-1 rounded">
+                          ({it.allergens})
+                        </span>
+                      )}
                     </div>
 
                     {/* Botón de Añadir */}
